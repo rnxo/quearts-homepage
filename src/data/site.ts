@@ -4,7 +4,7 @@ export const site = {
   role: 'vocaloid producer',
   // TODO: confirm/refine this copy with Quearts — drafted from the little that's
   // publicly confirmed (note.com bio + the "描く足跡" video description).
-  tagline: '曲の合間に生まれた物語を、歌にする。',
+  tagline: '音楽が好き。',
   description:
     'Quearts（クアーツ）は初音ミクなどのボーカロイドで楽曲を投稿するクリエイター。楽曲ひとつひとつに物語を添えて発表している。',
   socials: [

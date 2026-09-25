@@ -25,7 +25,7 @@ export default function Header() {
           to="/"
           className="text-sm font-bold tracking-[0.32em] text-[var(--ink)] no-underline"
         >
-          {site.name.toUpperCase()}
+          Quearts
         </Link>
 
         <div className="order-3 flex w-full flex-wrap items-center gap-x-5 gap-y-1 text-sm font-medium sm:order-none sm:w-auto">
