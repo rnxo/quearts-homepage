@@ -29,6 +29,8 @@ pnpm deploy   # wrangler deploy を実行
 | `src/data/news.ts`    | お知らせ一覧                                                                                                                                                                       |
 | `src/data/profile.ts` | プロフィール本文・活動年表・使用機材                                                                                                                                               |
 
+Contact ページの料金・受付状況・依頼フォームの URL は `src/models/contact.ts` を編集してください。受付状況は `availability.bookedUntil` に予約が埋まっている最後の月（`YYYY-MM`）を書くと、月ごとの「予約済み / 受付可」表示に反映されます。
+
 ジャケット画像は `public/artwork/` などに置き、`songs.ts` の `artworkUrl` からそのパス（例: `/artwork/suishou-no-yoru.jpg`）を指定してください。
 
 ## ページ構成
@@ -38,6 +40,7 @@ pnpm deploy   # wrangler deploy を実行
 - `/discography/$slug` — 楽曲詳細
 - `/news` — お知らせ一覧
 - `/profile` — プロフィール
+- `/contact` — 制作依頼（依頼内容・受付状況・料金表・依頼フォーム）
 
 ## Linting & Formatting
 

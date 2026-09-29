@@ -34,7 +34,7 @@ src/
 ├── models/
 │   └── contact.ts              # 新規: 型と掲載データ（サービス・区分・料金・受付・フォームURL）
 ├── lib/
-│   ├── contact.ts              # 新規: 純関数（月ストリップ生成・最安値・受付サマリ）
+│   ├── contact.function.ts              # 新規: 純関数（月ストリップ生成・最安値・受付サマリ）
 │   └── format.ts               # 変更: formatYen を追記
 ├── components/
 │   ├── ThemeToggle.tsx         # 変更: 初期値 'auto' → 'dark'
@@ -109,7 +109,7 @@ open   ──(トリガー click / Enter / Space)──▶ closed
   - 変更は `var mode=(...)?stored:'auto'` の末尾 `'auto'` → `'dark'` の 1 か所だけにする。
 - **[A-3]** `src/components/ThemeToggle.tsx` の `getInitialMode()` の戻り値を、SSR 時と保存値が無い時の両方で `'dark'` にする。あわせて `useState<ThemeMode>('auto')` の初期値も `'dark'` にする。
 - **[A-4]** 既に `theme` を保存しているユーザーの設定は上書きしない（保存値がある場合は従来どおりそれを使う）ことを確認する。
-
+lib
 ## Phase B: データモデルと純関数（PR #2）
 
 - **[B-1]** `src/models/contact.ts` を作成し、次の型を export する。

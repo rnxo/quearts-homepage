@@ -12,6 +12,7 @@
   --ink: #111111;
   --ink-soft: #6b6b66;
   --rule: rgba(17, 17, 17, 0.14);
+  --accent-open: #299a5c;
 }
 
 .dark {
@@ -20,6 +21,7 @@
   --ink: #f2f1ec;
   --ink-soft: #9a998f;
   --rule: rgba(242, 241, 236, 0.16);
+  --accent-open: #5cd68c;
 }
 
 @layer base {
@@ -104,5 +106,12 @@
       transform: none;
       transition: none;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-accordion-panel],
+  [data-accordion-panel] * {
+    transition: none;
   }
 }
