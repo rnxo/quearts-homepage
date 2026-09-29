@@ -5,14 +5,6 @@ export type Service = {
   description: string
 }
 
-export type Category = {
-  id: 'company' | 'individual'
-  name: string
-  nameEn: string
-  description: string
-  terms: string[]
-}
-
 export type PriceRow = {
   serviceId: string
   label: string
@@ -76,31 +68,6 @@ export const services: Service[] = [
     name: '一括制作',
     nameEn: 'All-in-one',
     description: '作詞・作曲・編曲・調声までまとめてお任せ',
-  },
-]
-
-export const categories: Category[] = [
-  {
-    id: 'company',
-    name: '企業',
-    nameEn: '企業・法人',
-    description: 'ゲーム・アニメ・広告・VTuber事務所など、企業からのご依頼。',
-    terms: [
-      '契約書・請求書に対応',
-      '納品後 請求書払い',
-      'クレジット表記はご相談',
-    ],
-  },
-  {
-    id: 'individual',
-    name: '個人',
-    nameEn: 'Creator・活動者',
-    description: '同人作品・個人VTuber・オリジナル曲など、個人からのご依頼。',
-    terms: [
-      'フォーム内の規約に同意',
-      '着手前 前払い（FEAT可）',
-      '「Quearts」表記をお願いします',
-    ],
   },
 ]
 

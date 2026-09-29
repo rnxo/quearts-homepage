@@ -15,11 +15,10 @@ import {
   buildMonthStrip,
   getMinPrice,
   summarizeAvailability,
-} from '#/lib/contact'
+} from '#/lib/contact.function'
 import { formatYen } from '#/lib/format'
 import {
   availability,
-  categories,
   priceNote,
   prices,
   requestLinks,
@@ -109,18 +108,8 @@ function ContactPage() {
             <ServicesPanel services={services} />
           </AccordionItem>
           <AccordionItem
-            id="category"
-            index="03"
-            title="企業依頼・個人依頼"
-            kicker="Category"
-            summary="企業・個人どちらも可"
-            defaultOpen={openId === 'category'}
-          >
-            <CategoryPanel categories={categories} />
-          </AccordionItem>
-          <AccordionItem
             id="price"
-            index="04"
+            index="03"
             title="料金表"
             kicker="Price"
             summary={priceSummary}
@@ -128,20 +117,9 @@ function ContactPage() {
           >
             <PriceTable prices={prices} note={priceNote} />
           </AccordionItem>
-          {/* 依頼フォームAccordionItem版 */}
-          {/* <AccordionItem
-            id="request"
-            index="05"
-            title="依頼フォーム"
-            kicker="Request"
-            summary="Google Form / FEAT"
-            defaultOpen={openId === 'request'}
-          >
-            <RequestPanel links={requestLinks} />
-          </AccordionItem> */}
           <DisplayCard
             id="request"
-            index="05"
+            index="04"
             title="依頼フォーム"
             kicker="Request"
             summary="Google Form / FEAT"

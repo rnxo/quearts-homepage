@@ -1,4 +1,4 @@
-import type { MonthCell } from '#/lib/contact'
+import type { MonthCell } from '#/lib/contact.function'
 import { cn } from '#/lib/utils'
 
 type StatusPanelProps = {
