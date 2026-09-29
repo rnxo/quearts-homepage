@@ -39,17 +39,6 @@ export const songs: Song[] = [
       piapro: 'https://piapro.jp/t/gIzw',
     }    
   },
-   {
-    slug: 'ripuru',
-    title: 'リプル',
-    releasedAt: '2026-09-24',
-    singer: '宮舞モカ',
-    role: '音楽・一部映像',
-    links: {
-      youtube: 'https://www.youtube.com/watch?v=8Btgmcf-ktY',
-      piapro: 'https://piapro.jp/t/gIzw',
-    }    
-  },
   {
     slug: 'sutari-yamai',
     title: '廃りの病',
