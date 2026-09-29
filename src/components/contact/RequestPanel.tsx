@@ -56,12 +56,12 @@ function RequestCard({ link }: { link: RequestLink }) {
         rel={ready ? 'noreferrer' : undefined}
         aria-disabled={ready ? undefined : 'true'}
         className={cn(
-          'mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-bold no-underline transition-opacity',
+          'mt-auto inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-bold no-underline transition-opacity',
           'bg-(--ink) text-(--paper)',
           ready ? 'hover:opacity-80' : 'cursor-not-allowed opacity-50',
         )}
       >
-        {ready ? OPEN_LABELS[link.id] : '準備中'}
+        { OPEN_LABELS[link.id] }
         <ArrowUpRight size={14} aria-hidden="true" />
       </a>
     </section>

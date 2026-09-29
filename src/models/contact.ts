@@ -32,7 +32,6 @@ export type RequestLink = {
   title: string
   description: string
   href: string
-  primary: boolean
 }
 
 // Contactページの掲載内容はこちらから編集してください
@@ -133,8 +132,7 @@ export const requestLinks: RequestLink[] = [
     label: 'Google Form',
     title: 'フォームで依頼・相談',
     description: 'お見積りだけのご相談もOK。2〜3日以内にメールでご返信します。',
-    href: '#', // TODO: 本番URLに差し替え
-    primary: true,
+    href: 'https://docs.google.com/forms/d/e/1FAIpQLSedU9yHmZY87r4a35d93nXGH-r0CNTLkF02D92xO6GuR45nUw/viewform',
   },
   {
     id: 'feat',
@@ -142,8 +140,7 @@ export const requestLinks: RequestLink[] = [
     title: 'FEATで依頼',
     description:
       '決済・納品までプラットフォーム上で完結。はじめての方も安心です。',
-    href: '#', // TODO: 本番URLに差し替え
-    primary: false,
+    href: 'https://feat.kurogo.studio/QueartsVocaloid', // TODO: 本番URLに差し替え
   },
 ]
 // 編集可能範囲はここまで
