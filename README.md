@@ -2,6 +2,19 @@
 
 ボカロP「Quearts」のオフィシャルサイト。TanStack Start + Tailwind CSS で構築し、Cloudflare Workers にデプロイする。
 
+## Queartsさんへ（編集の仕方です）
+1. https://github.com/rnxo/quearts-homepage の画面から「.」キーを押す
+2. github workspace上でvscodeを開きます
+3. `Ctrl` + `j`でターミナルを開く
+4. ターミナルで`git pull`コマンドを実行
+5. `pnpm dev`コマンドを実行する
+6. ポートの3000のところに右にある青いリンクを押すとサイトを開ける
+7. 編集してください
+8. 編集が終わったら`Ctrl + C`でサイトのリンクを停止
+9. `git add .`コマンドを実行して 編集内容をgitに覚えさせる
+10. `git commit -m "<メッセージ>"` <メッセージ>の部分で編集内容を書く
+11. `git push`コマンドを実行して編集内容をgithubに送信・反映させる
+
 ## 開発
 
 ```bash
