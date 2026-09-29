@@ -25,6 +25,7 @@ import {
   services,
 } from '#/models/contact'
 import { DisplayCard } from '#/components/contact/DisplayCard'
+import { RequestFlowContainer } from '#/components/contact/RequestFlow'
 
 export const Route = createFileRoute('/contact/')({
   head: () => ({
@@ -60,7 +61,7 @@ function ContactPage() {
           <div>
             <h1 className="display text-3xl sm:text-5xl">Request</h1>
             <p className="mt-6 mb-0 max-w-2xl text-sm leading-7 text-(--ink-soft)">
-              楽曲制作のご依頼を受け付けています。気になる項目をタップすると詳細が開きます。
+              楽曲制作のご依頼を企業・個人両方、受け付けています。気になる項目をタップすると詳細が開きます。
             </p>
           </div>
         </div>
@@ -108,8 +109,19 @@ function ContactPage() {
             <ServicesPanel services={services} />
           </AccordionItem>
           <AccordionItem
-            id="price"
+            id="request-flow"
             index="03"
+            title="依頼の流れ"
+            kicker="request-flow"
+            summary="依頼を受けたときの具体的な流れ"
+            defaultOpen={openId === 'request-flow'}
+          >
+            <RequestFlowContainer />
+          </AccordionItem>
+
+          <AccordionItem
+            id="price"
+            index="04"
             title="料金表"
             kicker="Price"
             summary={priceSummary}
@@ -119,7 +131,7 @@ function ContactPage() {
           </AccordionItem>
           <DisplayCard
             id="request"
-            index="04"
+            index="05"
             title="依頼フォーム"
             kicker="Request"
             summary="Google Form / FEAT"
