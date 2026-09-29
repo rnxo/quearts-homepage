@@ -50,6 +50,13 @@ export default function Header() {
           >
             Profile
           </Link>
+          <Link
+            to="/contact"
+            className="nav-link"
+            activeProps={{ className: 'nav-link is-active' }}
+          >
+            Contact
+          </Link>
         </div>
 
         <div className="ml-auto flex items-center">

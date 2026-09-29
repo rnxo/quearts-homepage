@@ -12,8 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ContactIndexRouteImport } from './routes/contact/index'
 import { Route as DiscographyIndexRouteImport } from './routes/discography/index'
-import { Route as DiscographySlugRouteImport } from './routes/discography/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,14 +30,14 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactIndexRoute = ContactIndexRouteImport.update({
+  id: '/contact/',
+  path: '/contact/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DiscographyIndexRoute = DiscographyIndexRouteImport.update({
   id: '/discography/',
   path: '/discography/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DiscographySlugRoute = DiscographySlugRouteImport.update({
-  id: '/discography/$slug',
-  path: '/discography/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -45,14 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/news': typeof NewsRoute
   '/profile': typeof ProfileRoute
-  '/discography/$slug': typeof DiscographySlugRoute
+  '/contact/': typeof ContactIndexRoute
   '/discography/': typeof DiscographyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/news': typeof NewsRoute
   '/profile': typeof ProfileRoute
-  '/discography/$slug': typeof DiscographySlugRoute
+  '/contact': typeof ContactIndexRoute
   '/discography': typeof DiscographyIndexRoute
 }
 export interface FileRoutesById {
@@ -60,28 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/news': typeof NewsRoute
   '/profile': typeof ProfileRoute
-  '/discography/$slug': typeof DiscographySlugRoute
+  '/contact/': typeof ContactIndexRoute
   '/discography/': typeof DiscographyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/news' | '/profile' | '/discography/$slug' | '/discography/'
+  fullPaths: '/' | '/news' | '/profile' | '/contact/' | '/discography/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/news' | '/profile' | '/discography/$slug' | '/discography'
-  id:
-    | '__root__'
-    | '/'
-    | '/news'
-    | '/profile'
-    | '/discography/$slug'
-    | '/discography/'
+  to: '/' | '/news' | '/profile' | '/contact' | '/discography'
+  id: '__root__' | '/' | '/news' | '/profile' | '/contact/' | '/discography/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NewsRoute: typeof NewsRoute
   ProfileRoute: typeof ProfileRoute
-  DiscographySlugRoute: typeof DiscographySlugRoute
+  ContactIndexRoute: typeof ContactIndexRoute
   DiscographyIndexRoute: typeof DiscographyIndexRoute
 }
 
@@ -108,18 +102,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact/': {
+      id: '/contact/'
+      path: '/contact'
+      fullPath: '/contact/'
+      preLoaderRoute: typeof ContactIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/discography/': {
       id: '/discography/'
       path: '/discography'
       fullPath: '/discography/'
       preLoaderRoute: typeof DiscographyIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/discography/$slug': {
-      id: '/discography/$slug'
-      path: '/discography/$slug'
-      fullPath: '/discography/$slug'
-      preLoaderRoute: typeof DiscographySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -129,7 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NewsRoute: NewsRoute,
   ProfileRoute: ProfileRoute,
-  DiscographySlugRoute: DiscographySlugRoute,
+  ContactIndexRoute: ContactIndexRoute,
   DiscographyIndexRoute: DiscographyIndexRoute,
 }
 export const routeTree = rootRouteImport
