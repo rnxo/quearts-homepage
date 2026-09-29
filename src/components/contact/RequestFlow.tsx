@@ -8,12 +8,12 @@ type RequestFlowItem = {
 }
 
 const requestFlowItems: RequestFlowItem[] = [
-  { id: '1', name: 'ヒアリング' },
-  { id: '2', name: 'お見積り' },
-  { id: '3', name: 'ラフ制作' },
-  { id: '4', name: '本制作' },
-  { id: '5', name: 'お支払い' },
-  { id: '6', name: '微調整・納品' },
+  { id: '1', name: 'ヒアリング', description: 'メールにて連絡' },
+  { id: '2', name: 'お見積り', description: 'メールの内容をお見積りを提案' },
+  { id: '3', name: 'ラフ制作', description: 'ざっくりした１コーラス分を制作'},
+  { id: '4', name: '本制作', description: '諸々確定後、本制作に移る' },
+  { id: '5', name: 'お支払い', description: 'PayPal・銀行振込' },
+  { id: '6', name: '微調整・納品', description: 'ギガファイル便にて音声データを納品' },
 ]
 
 export function RequestFlowContainer() {
@@ -26,7 +26,7 @@ export function RequestFlowContainer() {
         {requestFlowItems.map((flowItem, index) => (
           <Fragment key={flowItem.id}>
             <li className="min-w-0 flex-1">
-              <RequestFlowCard flowName={flowItem.name} />
+              <RequestFlowCard flowItem={flowItem} />
             </li>
             {index < requestFlowItems.length - 1 && (
               <li aria-hidden="true" className="shrink-0 text-(--ink-soft)">
@@ -55,10 +55,11 @@ export function RequestFlowContainer() {
   )
 }
 
-function RequestFlowCard({ flowName }: { flowName: string }) {
+function RequestFlowCard({ flowItem }: { flowItem: RequestFlowItem}) {
   return (
-    <div className="flex aspect-square items-center justify-center rounded-md p-1 text-center ring-1 ring-(--rule) sm:p-2">
-      <h4 className="m-0 text-sm">{flowName}</h4>
+    <div className="flex flex-col aspect-square items-center justify-center rounded-md p-1 text-center ring-1 ring-(--rule) sm:p-2">
+      <h4 className="m-0 text-sm">{flowItem.name}</h4>
+      <span className="text-[12px] text-(--ink-soft)">{flowItem.description}</span>
     </div>
   )
 }
