@@ -25,7 +25,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: `${site.name} — Official Site`,
+        title: `Quearts — Official Site`,
       },
       {
         name: 'description',
@@ -49,6 +49,9 @@ export const Route = createRootRoute({
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: 'icon', type: 'image/png', href: '/favicon.ico?v=2'
+      }
     ],
   }),
   shellComponent: RootDocument,
