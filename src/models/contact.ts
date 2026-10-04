@@ -1,9 +1,20 @@
+import type { MDXContent } from "mdx/types"
+
 export type Service = {
   id: string
   name: string
   nameEn: string
   description: string
 }
+
+export type RequestFlowItem = {
+  id: string
+  name: string
+  simpleText?: string
+  /** MDX 版で使う、ビルド時に変換済みのコンポーネント */
+  DescriptionMdx?: MDXContent
+}
+
 
 export type PriceRow = {
   serviceId: string
