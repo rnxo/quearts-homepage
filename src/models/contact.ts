@@ -1,4 +1,4 @@
-import type { MDXContent } from "mdx/types"
+import type { MDXContent } from 'mdx/types'
 
 export type Service = {
   id: string
@@ -15,12 +15,10 @@ export type RequestFlowItem = {
   DescriptionMdx?: MDXContent
 }
 
-
 export type PriceRow = {
   serviceId: string
   label: string
-  commercial: number // 税込・円
-  doujin: number // 税込・円
+  amount: string
 }
 
 export type Availability = {
@@ -41,7 +39,7 @@ export type RequestLink = {
 //  ーーー 記入例 ーーー
 // 受付状況: availability.bookedUntil に「予約が埋まっている最後の月」を 'YYYY-MM' で記入
 //   status: 'closed' にすると「現在受付停止中」の表示になります
-// 料金: prices の commercial / doujin に税込の金額を数値で記入（例: 50000）
+// 料金: prices の amount に税込の金額を数値で記入（例: 50000）
 // ーーー 記入例おわり ーーー
 export const services: Service[] = [
   {
@@ -83,16 +81,18 @@ export const services: Service[] = [
 ]
 
 export const prices: PriceRow[] = [
-  { serviceId: 'composition', label: '作曲', commercial: 50000, doujin: 30000 },
-  { serviceId: 'arrangement', label: '編曲', commercial: 40000, doujin: 25000 },
-  { serviceId: 'lyrics', label: '作詞', commercial: 20000, doujin: 10000 },
-  { serviceId: 'vocal-tuning', label: '調声', commercial: 15000, doujin: 8000 },
-  {
-    serviceId: 'all-in-one',
-    label: '一括制作',
-    commercial: 100000,
-    doujin: 60000,
-  },
+  { serviceId: 'all-in-one', label: '一括制作', amount: '20000' },
+  { serviceId: 'composition', label: '作曲', amount: '10000' },
+  { serviceId: 'lyrics', label: '作詞', amount: '5000' },
+  { serviceId: 'arrangement', label: '編曲', amount: '10000' },
+  { serviceId: 'mix', label: 'MIX', amount: '5000' },
+  { serviceId: 'streaming-bgm', label: '配信用BGM制作', amount: '5000' },
+  { serviceId: 'retake-from-begening', label: 'リテイク（１からやり直しの場合）', amount: '合計金額 +30%' },
+  { serviceId: 'retake-many-times', label: 'リテイク（あまりに回数が多い場合）', amount: '合計金額 +10%' },
+  { serviceId: 'business-purpose', label: '商用利用', amount: '合計金額 +30%' },
+  { serviceId: 'fast-making', label: 'お急ぎ納品（２週間以内の場合）', amount: '合計金額 +30%' },
+  { serviceId: 'chaging-deadline', label: '納期変更', amount: '合計金額 +50%' },
+  { serviceId: 'achivement-unpublished', label: '実績非公開', amount: '合計金額 +50%' },
 ]
 
 export const priceNote =

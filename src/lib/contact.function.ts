@@ -46,10 +46,10 @@ export function buildMonthStrip(
   })
 }
 
-/** Lowest commercial/doujin price across all rows, or `NaN` when empty. */
+/** Lowest price across all rows, or `NaN` when empty. */
 export function getMinPrice(prices: PriceRow[]): number {
   if (prices.length === 0) return NaN
-  return Math.min(...prices.flatMap((row) => [row.commercial, row.doujin]))
+  return Math.min(...prices.map((row) => row.amount))
 }
 
 export function summarizeAvailability(a: Availability): {
