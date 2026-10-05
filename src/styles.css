@@ -107,6 +107,124 @@
       transition: none;
     }
   }
+
+  /* Horizontal scroll container (HorizontalScrollContainer.tsx) */
+  .hscroll {
+    --hscroll-gutter: 1rem;
+    --hscroll-item-w: min(82vw, 20rem);
+  }
+
+  @media (min-width: 640px) {
+    .hscroll {
+      --hscroll-gutter: 1.5rem;
+      --hscroll-item-w: 22rem;
+    }
+  }
+
+  .hscroll-track {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--hscroll-gutter);
+    padding-block: 1.5rem;
+    padding-inline: var(--hscroll-gutter);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* Fade both edges so the cut-off cards read as "more to come". */
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 var(--hscroll-gutter),
+      #000 calc(100% - var(--hscroll-gutter)),
+      transparent
+    );
+  }
+
+  .hscroll-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hscroll-track:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: -2px;
+  }
+
+  .hscroll-track-item {
+    flex: 0 0 var(--hscroll-item-w);
+    width: var(--hscroll-item-w);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  /* Cards rise and brighten as they travel toward the centre of the track. */
+  @supports (animation-timeline: view()) {
+    .hscroll-track-item {
+      animation: hscroll-rise linear both;
+      animation-timeline: view(x);
+      animation-range: entry 0% exit 100%;
+    }
+  }
+
+  @keyframes hscroll-rise {
+    0% {
+      opacity: 0.35;
+      transform: translateY(1.25rem) scale(0.9);
+    }
+    35%,
+    65% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0.35;
+      transform: translateY(1.25rem) scale(0.9);
+    }
+  }
+
+  .hscroll-nav {
+    position: absolute;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--rule);
+    translate: 0 -50%;
+    cursor: pointer;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .hscroll-nav:hover {
+    transform: scale(1.06);
+  }
+
+  .hscroll-nav.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hscroll-track {
+      scroll-behavior: auto;
+    }
+
+    .hscroll-track-item {
+      animation: none;
+    }
+
+    .hscroll-nav {
+      transition: none;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

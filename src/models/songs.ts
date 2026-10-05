@@ -64,4 +64,79 @@ export const songs: Song[] = [
     },
   },
 ]
+
+export const DiscoSongs: Song[] = [
+  {
+    slug: 'ripuru',
+    title: 'リプル',
+    releasedAt: '2026-09-24',
+    singer: '宮舞モカ',
+    role: '音楽・一部映像',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=8Btgmcf-ktY',
+      piapro: 'https://piapro.jp/t/gIzw',
+    }    
+  },
+  {
+    slug: 'sutari-yamai',
+    title: '廃りの病',
+    releasedAt: '2026-09-18',
+    singer: '宮舞モカ',
+    role: '音楽・映像',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=IEN00uTCRBg',
+      niconico: 'https://www.nicovideo.jp/watch/sm46814719',
+      piapro: 'https://piapro.jp/t/ecXC',
+    },
+  },
+  {
+    slug: 'tokeru',
+    title: 'とける',
+    releasedAt: '2026-08-20',
+    singer: '2026-08-20',
+    role: '初音ミク',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=9NVz1e3YT2w',
+      niconico: 'https://www.nicovideo.jp/watch/sm46694343',
+      piapro: 'https://piapro.jp/t/yWuV',
+    },
+  },
+    {
+    slug: 'ripuru',
+    title: 'リプル',
+    releasedAt: '2026-09-24',
+    singer: '宮舞モカ',
+    role: '音楽・一部映像',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=8Btgmcf-ktY',
+      piapro: 'https://piapro.jp/t/gIzw',
+    }    
+  },
+  {
+    slug: 'sutari-yamai',
+    title: '廃りの病',
+    releasedAt: '2026-09-18',
+    singer: '宮舞モカ',
+    role: '音楽・映像',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=IEN00uTCRBg',
+      niconico: 'https://www.nicovideo.jp/watch/sm46814719',
+      piapro: 'https://piapro.jp/t/ecXC',
+    },
+  },
+  {
+    slug: 'tokeru',
+    title: 'とける',
+    releasedAt: '2026-08-20',
+    singer: '2026-08-20',
+    role: '初音ミク',
+    links: {
+      youtube: 'https://www.youtube.com/watch?v=9NVz1e3YT2w',
+      niconico: 'https://www.nicovideo.jp/watch/sm46694343',
+      piapro: 'https://piapro.jp/t/yWuV',
+    },
+  },
+
+]
+
 // 編集可能範囲はここまで
