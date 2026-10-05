@@ -17,7 +17,10 @@ export default function PriceTable({ prices, note }: PriceTableProps) {
             >
               Service
             </th>
-            <th scope="col" className="kicker pb-3 text-right font-semibold">
+            <th scope="col" className="kicker pb-3 text-left font-semibold">
+              Amount
+            </th>
+            <th scope="col" className="kicker pb-3 text-left font-semibold">
               Amount
             </th>
           </tr>
@@ -31,8 +34,11 @@ export default function PriceTable({ prices, note }: PriceTableProps) {
               <th scope="row" className="py-4 pr-4 text-left font-bold">
                 {row.label}
               </th>
-              <td className="py-4 text-right text-base font-bold whitespace-nowrap tabular-nums">
-                {row.amount}〜
+              <td className="py-4 text-left text-sm text-(--ink-soft) whitespace-nowrap tabular-nums">
+                {row.description}
+              </td>
+              <td className="py-4 text-left text-base font-bold whitespace-nowrap tabular-nums">
+                ￥{row.amount}〜
               </td>
             </tr>
           ))}
