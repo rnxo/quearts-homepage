@@ -1,4 +1,3 @@
-import { useId } from 'react'
 import type { ReactNode } from 'react'
 import { cn } from '#/lib/utils'
 
@@ -19,13 +18,10 @@ export function DisplayCard({
   summary,
   children,
 }: DisplayCardProps) {
-  const reactId = useId()
-  const buttonId = `${id}-trigger-${reactId}`
-  const panelId = `${id}-panel-${reactId}`
+  const headingId = `${id}-heading`
+  const panelId = `${id}-panel`
 
-  // Opens the item when defaultOpen turns true after mount (e.g. a URL hash
-  // that only becomes known after hydration).
-
+  // Always-open card with the same look as an open AccordionItem.
   return (
     <div
       id={id}
@@ -38,10 +34,8 @@ export function DisplayCard({
     >
       <h3 className="m-0">
         <div
-          id={id}
-          aria-expanded={open}
-          aria-controls={panelId}
-          className="grid w-full cursor-pointer grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-1 px-4 py-6 text-left sm:grid-cols-[2rem_minmax(0,1fr)_auto_auto] sm:px-6"
+          id={headingId}
+          className="grid w-full grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-1 px-4 py-6 text-left sm:grid-cols-[2rem_minmax(0,1fr)_auto_auto] sm:px-6"
         >
           <span className="kicker col-start-1 row-start-1 tracking-[0.14em]">
             {index}
@@ -60,13 +54,8 @@ export function DisplayCard({
       <div
         role="region"
         id={panelId}
-        aria-labelledby={buttonId}
-        data-accordion-panel
-        inert={!open}
-        className={cn(
-          'grid transition-[grid-template-rows] duration-300 ease-out',
-          'grid-rows-[1fr]',
-        )}
+        aria-labelledby={headingId}
+        className="grid grid-rows-[1fr]"
       >
         <div className="overflow-hidden">
           <div className="mx-4 border-t border-(--rule) pt-6 pb-8 sm:mr-6 sm:ml-18">

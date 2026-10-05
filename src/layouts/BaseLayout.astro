@@ -1,0 +1,65 @@
+---
+import { ClientRouter } from 'astro:transitions'
+import Footer from '#/components/Footer'
+import Header from '#/components/Header.astro'
+import { site } from '#/data/site'
+import '#/styles.css'
+
+type Props = {
+  title?: string
+  description?: string
+}
+
+const {
+  title = `${site.name} — Official Site`,
+  description = site.description,
+} = Astro.props
+---
+
+<html lang="ja">
+  <head>
+    <script is:inline>
+      // Applies the stored theme before first paint, and again after every
+      // view transition because the swap replaces the <html> attributes.
+      window.__applyStoredTheme = function () {
+        try {
+          const stored = window.localStorage.getItem('theme')
+          const mode =
+            stored === 'light' || stored === 'dark' || stored === 'auto'
+              ? stored
+              : 'dark'
+          const prefersDark = window.matchMedia(
+            '(prefers-color-scheme: dark)',
+          ).matches
+          const resolved =
+            mode === 'auto' ? (prefersDark ? 'dark' : 'light') : mode
+          const root = document.documentElement
+          root.classList.remove('light', 'dark')
+          root.classList.add(resolved)
+          if (mode === 'auto') {
+            root.removeAttribute('data-theme')
+          } else {
+            root.setAttribute('data-theme', mode)
+          }
+          root.style.colorScheme = resolved
+        } catch (e) {}
+      }
+      window.__applyStoredTheme()
+      document.addEventListener('astro:after-swap', window.__applyStoredTheme)
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={`${site.name} — Official Site`} />
+    <meta property="og:description" content={site.description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" href="/favicon.ico?v=2" />
+    <ClientRouter />
+  </head>
+  <body class="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[var(--ink)] selection:text-[var(--paper)]">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>

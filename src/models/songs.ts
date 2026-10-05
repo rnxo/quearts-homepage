@@ -15,8 +15,8 @@ export type Song = {
   description?: string;
 }
 
-//新曲追加の場合はこちらから編集してください
-//  ーーー　記入例　ーーー
+// 新曲追加の場合はこちらから編集してください
+//  ーーー 記入例 ーーー
 // {
 //   slug: 'pipuru', -> URLで使うもの(ex: https://quearts-music.com/songs/pipuru)
 //   title: 'リプル', -> サイトに載せる名前
@@ -26,7 +26,7 @@ export type Song = {
 //     piapro: 'https://piapro.jp/t/gIzw',
 //   },
 // },
-// ーーー　記入例おわり　ーーー
+// ーーー 記入例おわり ーーー
 export const songs: Song[] = [
   {
     slug: 'ripuru',
@@ -64,4 +64,4 @@ export const songs: Song[] = [
     },
   },
 ]
-//編集可能範囲はここまで
+// 編集可能範囲はここまで

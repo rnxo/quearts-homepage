@@ -1,0 +1,117 @@
+---
+import BaseLayout from '#/layouts/BaseLayout.astro'
+import Reveal from '#/components/Reveal'
+import { Accordion } from '#/components/contact/Accordion'
+import AccordionItem from '#/components/contact/AccordionItem'
+import { DisplayCard } from '#/components/contact/DisplayCard'
+import PriceTable from '#/components/contact/PriceTable'
+import RequestFlow from '#/components/contact/RequestFlow.astro'
+import RequestPanel from '#/components/contact/RequestPanel'
+import ServicesPanel from '#/components/contact/ServicesPanel'
+import StatusPanel from '#/components/contact/StatusPanel'
+import {
+  getCurrentYm,
+  getMinPrice,
+  summarizeAvailability,
+} from '#/lib/contact.function'
+import { formatYen } from '#/lib/format'
+import {
+  availability,
+  priceNote,
+  prices,
+  requestLinks,
+  services,
+} from '#/models/contact'
+
+const status = summarizeAvailability(availability)
+const minPrice = getMinPrice(prices)
+const priceSummary = Number.isNaN(minPrice) ? '—' : `${formatYen(minPrice)}〜`
+// Month at build time. StatusPanel shifts it to the viewer's month after hydration.
+const initialYm = getCurrentYm()
+---
+
+<BaseLayout
+  title="Contact — Quearts"
+  description="楽曲制作（作曲・編曲・作詞・調声）のご依頼について。受付状況・料金表・依頼フォームをご案内しています。"
+>
+  <main class="page-wrap px-4 py-16 sm:px-6 sm:py-20">
+    <Reveal client:visible>
+      <p class="kicker mb-4">Contact</p>
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 class="display text-3xl sm:text-5xl">Request</h1>
+          <p class="mt-6 mb-0 max-w-2xl text-sm leading-7 text-(--ink-soft)">
+            楽曲制作のご依頼を企業・個人両方、受け付けています。気になる項目をタップすると詳細が開きます。
+          </p>
+        </div>
+      </div>
+      <hr class="rule-line mt-8" />
+    </Reveal>
+
+    <Reveal client:visible className="mt-12">
+      <DisplayCard id="status" index="01" title="受付状況" kicker="STATUS">
+        <span
+          slot="summary"
+          class={status.isOpen ? 'text-(--accent-open)' : 'text-(--ink-soft)'}
+        >
+          {status.isOpen ? `● ${status.short}` : status.short}
+        </span>
+        {status.isOpen ? (
+          <StatusPanel
+            client:load
+            bookedUntil={availability.bookedUntil}
+            initialYm={initialYm}
+            note={availability.note}
+          />
+        ) : (
+          <div class="flex flex-col justify-center items-center">
+            <span class="text-center text-2xl font-bold">
+              ----- 現在受付停止中 -----
+            </span>
+          </div>
+        )}
+      </DisplayCard>
+      <Accordion>
+        <AccordionItem
+          client:visible
+          id="services"
+          index="02"
+          title="依頼できること"
+          kicker="Services"
+          summary="作曲・編曲・作詞・調声・MIX・一括"
+        >
+          <ServicesPanel services={services} />
+        </AccordionItem>
+        <AccordionItem
+          client:visible
+          id="request-flow"
+          index="03"
+          title="依頼の流れ"
+          kicker="request-flow"
+          summary="依頼を受けたときの具体的な流れ"
+        >
+          <RequestFlow />
+        </AccordionItem>
+        <AccordionItem
+          client:visible
+          id="price"
+          index="04"
+          title="料金表"
+          kicker="Price"
+          summary={priceSummary}
+        >
+          <PriceTable prices={prices} note={priceNote} />
+        </AccordionItem>
+        <DisplayCard
+          id="request"
+          index="05"
+          title="依頼フォーム"
+          kicker="Request"
+          summary="Google Form / FEAT"
+        >
+          <RequestPanel links={requestLinks} />
+        </DisplayCard>
+      </Accordion>
+    </Reveal>
+  </main>
+</BaseLayout>
