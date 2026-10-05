@@ -1,0 +1,58 @@
+---
+import ThemeToggle from './ThemeToggle'
+import { isActivePath } from '#/lib/nav'
+
+const navItems = [
+  { href: '/news', label: 'News' },
+  { href: '/discography', label: 'Discography' },
+  { href: '/profile', label: 'Profile' },
+  { href: '/contact', label: 'Contact' },
+]
+
+const pathname = Astro.url.pathname
+---
+
+<header
+  data-site-header
+  class="sticky top-0 z-50 border-b border-transparent bg-[var(--paper)]/90 backdrop-blur-sm transition-[border-color] [&[data-scrolled]]:border-(--rule)"
+>
+  <nav class="page-wrap flex flex-wrap items-center gap-x-6 gap-y-3 px-4 py-4 sm:px-6">
+    <a
+      href="/"
+      class="text-sm font-bold tracking-[0.32em] text-[var(--ink)] no-underline"
+    >
+      Quearts
+    </a>
+
+    <div class="order-3 flex w-full flex-wrap items-center gap-x-5 gap-y-1 text-sm font-medium sm:order-none sm:w-auto">
+      {navItems.map((item) => {
+        const active = isActivePath(pathname, item.href)
+        return (
+          <a
+            href={item.href}
+            class:list={['nav-link', active && 'is-active']}
+            aria-current={active ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        )
+      })}
+    </div>
+
+    <div class="ml-auto flex items-center">
+      <ThemeToggle client:load transition:persist="theme-toggle" />
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Shows the bottom rule once the page has scrolled. The header element is
+  // replaced on every view transition, so it is looked up on each event.
+  function updateHeaderRule() {
+    const header = document.querySelector('[data-site-header]')
+    header?.toggleAttribute('data-scrolled', window.scrollY > 4)
+  }
+
+  window.addEventListener('scroll', updateHeaderRule, { passive: true })
+  document.addEventListener('astro:page-load', updateHeaderRule)
+</script>

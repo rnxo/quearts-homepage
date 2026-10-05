@@ -1,12 +1,29 @@
+import { useEffect, useState } from 'react'
+import { buildMonthStrip, getCurrentYm } from '#/lib/contact.function'
 import type { MonthCell } from '#/lib/contact.function'
 import { cn } from '#/lib/utils'
 
 type StatusPanelProps = {
-  months: MonthCell[]
+  bookedUntil: string
+  /** Month at build time. The first render uses it so hydration matches the static HTML. */
+  initialYm: string
   note: string
 }
 
-export default function StatusPanel({ months, note }: StatusPanelProps) {
+export default function StatusPanel({
+  bookedUntil,
+  initialYm,
+  note,
+}: StatusPanelProps) {
+  const [currentYm, setCurrentYm] = useState(initialYm)
+
+  // The page is prerendered, so shift the strip to the viewer's current month.
+  useEffect(() => {
+    setCurrentYm(getCurrentYm())
+  }, [])
+
+  const months = buildMonthStrip(bookedUntil, currentYm)
+
   return (
     <div>
       <MonthStrip months={months} />

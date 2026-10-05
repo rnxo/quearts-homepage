@@ -1,0 +1,73 @@
+---
+import { ArrowRight } from 'lucide-react'
+import HearingMdx from './flow-item-md/01_hearing.mdx'
+import EstimateMdx from './flow-item-md/02_estimate.mdx'
+import RoughMdx from './flow-item-md/03_rough.mdx'
+import MainworkMdx from './flow-item-md/04_main_work.mdx'
+import PayingMdx from './flow-item-md/05_paying.mdx'
+import DeliveryMdx from './flow-item-md/06_delivery.mdx'
+import ExternalLink from './ExternalLink.astro'
+import { RequestFlowStep } from './RequestFlowStep'
+
+const requestFlowItems = [
+  {
+    id: '1',
+    name: 'ヒアリング',
+    simpleText: 'メールにて連絡',
+    Content: HearingMdx,
+  },
+  {
+    id: '2',
+    name: 'お見積り',
+    simpleText: 'メールの内容をお見積りを提案',
+    Content: EstimateMdx,
+  },
+  {
+    id: '3',
+    name: 'ラフ制作',
+    simpleText: 'ざっくりした１コーラス分を制作',
+    Content: RoughMdx,
+  },
+  {
+    id: '4',
+    name: '本制作',
+    simpleText: '諸々確定後、本制作に移る',
+    Content: MainworkMdx,
+  },
+  {
+    id: '5',
+    name: 'お支払い',
+    simpleText: 'PayPal・銀行振込',
+    Content: PayingMdx,
+  },
+  {
+    id: '6',
+    name: '微調整・納品',
+    simpleText: 'ギガファイル便にて音声データを納品',
+    Content: DeliveryMdx,
+  },
+]
+---
+
+<ol class="m-0 flex list-none items-center gap-1 p-0 sm:gap-2">
+  {requestFlowItems.map(({ Content, ...flowItem }, index) => (
+    <>
+      <li class="min-w-0 flex-1">
+        {/* MDX はここで描画し、ダイアログの中身として island に渡す */}
+        <RequestFlowStep client:visible flowItem={flowItem}>
+          <Content components={{ a: ExternalLink }} />
+        </RequestFlowStep>
+      </li>
+      {index < requestFlowItems.length - 1 && (
+        <li aria-hidden="true" class="shrink-0 text-(--ink-soft)">
+          <ArrowRight className="size-3 sm:size-4" />
+        </li>
+      )}
+    </>
+  ))}
+</ol>
+<div class="m-2 p-2 h-[20%] w-full flex justify-end">
+  <p class="text-[0.8rem] font-bold text-(--ink-soft)">
+    各カードをクリックすると詳細がでます
+  </p>
+</div>

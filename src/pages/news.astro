@@ -1,0 +1,46 @@
+---
+import BaseLayout from '#/layouts/BaseLayout.astro'
+import Reveal from '#/components/Reveal'
+import { getNewsSortedByDate } from '#/data/news'
+import { formatDate, formatYear } from '#/lib/format'
+
+const items = getNewsSortedByDate()
+const years = [...new Set(items.map((item) => formatYear(item.date)))]
+---
+
+<BaseLayout title="News — Quearts">
+  <main class="page-wrap px-4 py-16 sm:px-6 sm:py-20">
+    <Reveal client:visible>
+      <p class="kicker mb-4">News</p>
+      <h1 class="display text-3xl sm:text-5xl">Announcements</h1>
+      <hr class="rule-line mt-8" />
+    </Reveal>
+
+    {years.map((year) => (
+      <div class="mt-14">
+        <Reveal client:visible>
+          <p class="kicker mb-4">{year}</p>
+        </Reveal>
+        <Reveal client:visible>
+          <ul class="m-0 list-none p-0">
+            {items
+              .filter((item) => formatYear(item.date) === year)
+              .map((item) => (
+                <li class="border-b border-[var(--rule)] py-6">
+                  <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6">
+                    <span class="kicker shrink-0">{formatDate(item.date)}</span>
+                    <span class="text-sm font-medium">{item.title}</span>
+                  </div>
+                  {item.body && (
+                    <p class="mt-2 max-w-2xl text-sm leading-7 text-[var(--ink-soft)] sm:ml-[calc(11ch+1.5rem)]">
+                      {item.body}
+                    </p>
+                  )}
+                </li>
+              ))}
+          </ul>
+        </Reveal>
+      </div>
+    ))}
+  </main>
+</BaseLayout>

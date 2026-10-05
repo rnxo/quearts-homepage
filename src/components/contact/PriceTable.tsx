@@ -1,4 +1,3 @@
-import { formatYen } from '#/lib/format'
 import type { PriceRow } from '#/models/contact'
 
 type PriceTableProps = {
@@ -12,7 +11,10 @@ export default function PriceTable({ prices, note }: PriceTableProps) {
       <table className="w-full border-collapse text-sm">
         <thead>
           <tr className="border-b border-(--rule)">
-            <th scope="col" className="kicker pb-3 pr-4 text-left font-semibold">
+            <th
+              scope="col"
+              className="kicker pb-3 pr-4 text-left font-semibold"
+            >
               Service
             </th>
             <th scope="col" className="kicker pb-3 text-right font-semibold">

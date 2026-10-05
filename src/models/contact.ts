@@ -1,5 +1,3 @@
-import type { MDXContent } from 'mdx/types'
-
 export type Service = {
   id: string
   name: string
@@ -7,12 +5,11 @@ export type Service = {
   description: string
 }
 
+/** 詳細の MDX は RequestFlow.astro で描画し、RequestFlowStep に children として渡す */
 export type RequestFlowItem = {
   id: string
   name: string
   simpleText?: string
-  /** MDX 版で使う、ビルド時に変換済みのコンポーネント */
-  DescriptionMdx?: MDXContent
 }
 
 export type PriceRow = {
@@ -87,12 +84,28 @@ export const prices: PriceRow[] = [
   { serviceId: 'arrangement', label: '編曲', amount: '10000' },
   { serviceId: 'mix', label: 'MIX', amount: '5000' },
   { serviceId: 'streaming-bgm', label: '配信用BGM制作', amount: '5000' },
-  { serviceId: 'retake-from-begening', label: 'リテイク（１からやり直しの場合）', amount: '合計金額 +30%' },
-  { serviceId: 'retake-many-times', label: 'リテイク（あまりに回数が多い場合）', amount: '合計金額 +10%' },
+  {
+    serviceId: 'retake-from-begening',
+    label: 'リテイク（１からやり直しの場合）',
+    amount: '合計金額 +30%',
+  },
+  {
+    serviceId: 'retake-many-times',
+    label: 'リテイク（あまりに回数が多い場合）',
+    amount: '合計金額 +10%',
+  },
   { serviceId: 'business-purpose', label: '商用利用', amount: '合計金額 +30%' },
-  { serviceId: 'fast-making', label: 'お急ぎ納品（２週間以内の場合）', amount: '合計金額 +30%' },
+  {
+    serviceId: 'fast-making',
+    label: 'お急ぎ納品（２週間以内の場合）',
+    amount: '合計金額 +30%',
+  },
   { serviceId: 'chaging-deadline', label: '納期変更', amount: '合計金額 +50%' },
-  { serviceId: 'achivement-unpublished', label: '実績非公開', amount: '合計金額 +50%' },
+  {
+    serviceId: 'achivement-unpublished',
+    label: '実績非公開',
+    amount: '合計金額 +50%',
+  },
 ]
 
 export const priceNote =

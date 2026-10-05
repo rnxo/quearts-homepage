@@ -1,13 +1,11 @@
-<!-- intent-skills:start -->
+## プロジェクト構成
 
-## Skill Loading
+- フレームワークは Astro（`output: 'static'`）。ページは `src/pages/*.astro`、共通レイアウトは `src/layouts/BaseLayout.astro`。
+- React コンポーネント（`.tsx`）は `client:*` を付けなければ静的 HTML として出力される。state や副作用を持つ部品だけ island（`client:load` / `client:visible`）にする。
+- ページ遷移は `<ClientRouter />`（View Transitions）。`<html>` の属性は遷移で入れ替わるため、テーマは `astro:after-swap` で再適用している（`BaseLayout.astro`）。
+- デプロイは Cloudflare Workers の静的アセット配信（`wrangler.jsonc` の `assets`）。Worker スクリプトは持たない。
 
-Before editing files for a substantial task:
+## 作業の前に
 
-- Run `pnpm dlx @tanstack/intent@latest list` from the workspace root to see available local skills.
-- If a listed skill matches the task, run `pnpm dlx @tanstack/intent@latest load <package>#<skill>` before changing files.
-- Use the loaded `SKILL.md` guidance while making the change.
-- Monorepos: when working across packages, run the skill check from the workspace root and prefer the local skill for the package being changed.
-- Multiple matches: prefer the most specific local skill for the package or concern you are changing; load additional skills only when the task spans multiple packages or concerns.
-
-<!-- intent-skills:end -->
+- `docs/*_PLAN.md` に実装手順書がある場合はそれに従う。
+- 変更後は `pnpm lint` と `pnpm build`（`astro check` を含む）を通す。

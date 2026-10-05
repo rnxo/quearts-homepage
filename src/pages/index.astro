@@ -1,0 +1,73 @@
+---
+import BaseLayout from '#/layouts/BaseLayout.astro'
+import Reveal from '#/components/Reveal'
+import SectionHeading from '#/components/SectionHeading'
+import SongCard from '#/components/SongCard'
+import { site } from '#/data/site'
+import { songs } from '#/models/songs'
+import { news } from '#/models/news'
+---
+
+<BaseLayout>
+  <main class="page-wrap px-4 pb-24 sm:px-6">
+    {/* 自己紹介カード */}
+    <section class="flex min-h-[24vh] flex-col justify-center py-5 sm:py-24">
+      <div class="flex justify-start items-center gap-10">
+        <img
+          src="/assets/quearts-icon.png"
+          alt="quearts-icon"
+          height={250}
+          width={250}
+        />
+        <div class="flex flex-col">
+          <span class="mt-6 max-w-lg text-base leading-8 text-[var(--ink-soft)]">
+            VOCALOID PRODUCER
+          </span>
+          <h1 class="display text-[clamp(2.5rem,9vw,6rem)]">{site.name}</h1>
+          <span class="mt-6 max-w-lg text-base leading-8 text-[var(--ink-soft)]">
+            音楽が好き。
+          </span>
+        </div>
+      </div>
+    </section>
+    {/* ニュースリスト */}
+    <div class="my-20">
+      <Reveal client:visible>
+        <SectionHeading kicker="News" title="Recent Updates">
+          <a slot="action" href="/news" class="nav-link text-sm">
+            一覧を見る →
+          </a>
+        </SectionHeading>
+      </Reveal>
+      <Reveal client:visible>
+        <ul class="m-0 list-none p-0">
+          {news.map((newsItem) => (
+            <li class="flex flex-col gap-1 border-b border-[var(--rule)] py-5 sm:flex-row sm:items-baseline sm:gap-6">
+              <span class="kicker shrink-0">{newsItem.releasedAt}</span>
+              <span class="text-sm">{newsItem.title}</span>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+    </div>
+    <Reveal client:visible>
+      <SectionHeading kicker="Discography" title="Latest Releases">
+        <a slot="action" href="/discography" class="nav-link text-sm">
+          一覧を見る →
+        </a>
+      </SectionHeading>
+    </Reveal>
+    <Reveal client:visible>
+      {/* ソングカード */}
+      <div class="mt-8 flex flex-col gap-8">
+        {songs.map((song) => (
+          <SongCard song={song} />
+        ))}
+      </div>
+    </Reveal>
+    {/* 依頼メールセクション */}
+    <section class="flex flex-col justify-center items-center my-20">
+      <h1>依頼メール</h1>
+    </section>
+  </main>
+</BaseLayout>

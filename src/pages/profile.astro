@@ -1,0 +1,71 @@
+---
+import BaseLayout from '#/layouts/BaseLayout.astro'
+import Reveal from '#/components/Reveal'
+import { site } from '#/data/site'
+import { profile } from '#/data/profile'
+---
+
+<BaseLayout title="Profile — Quearts">
+  <main class="page-wrap px-4 py-16 sm:px-6 sm:py-20">
+    <Reveal client:visible>
+      <p class="kicker mb-4">Profile</p>
+      <h1 class="display text-3xl sm:text-5xl">{site.name}</h1>
+      <hr class="rule-line mt-8" />
+    </Reveal>
+
+    <div class="mt-12 grid grid-cols-1 gap-14 sm:grid-cols-[2fr_1fr]">
+      <Reveal client:visible>
+        <div class="space-y-5">
+          {profile.bio.map((paragraph) => (
+            <p class="max-w-2xl text-sm leading-8 text-[var(--ink-soft)]">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+
+        <div class="mt-12">
+          <p class="kicker mb-5">Timeline</p>
+          <ul class="m-0 list-none space-y-4 p-0">
+            {profile.timeline.map((entry) => (
+              <li class="flex gap-6 border-b border-[var(--rule)] pb-4 text-sm">
+                <span class="w-14 shrink-0 text-[var(--ink-soft)]">
+                  {entry.year}
+                </span>
+                <span>{entry.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
+
+      <Reveal client:visible>
+        <div>
+          <p class="kicker mb-5">Gear</p>
+          <ul class="m-0 list-none space-y-2 p-0 text-sm text-[var(--ink-soft)]">
+            {profile.gear.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="mt-12">
+          <p class="kicker mb-5">Social</p>
+          <ul class="m-0 list-none space-y-2 p-0">
+            {site.socials.map((social) => (
+              <li>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="nav-link text-sm"
+                >
+                  {social.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
+    </div>
+  </main>
+</BaseLayout>

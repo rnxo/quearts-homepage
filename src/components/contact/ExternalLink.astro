@@ -1,0 +1,17 @@
+---
+// MDX 内の <a> を差し替える。外部リンクだけ新しいタブで開く。
+type Props = {
+  href?: string
+}
+
+const { href } = Astro.props
+const external = href?.startsWith('http')
+---
+
+<a
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noreferrer' : undefined}
+>
+  <slot />
+</a>

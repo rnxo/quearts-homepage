@@ -9,6 +9,14 @@ export type MonthCell = {
 
 const YM_PATTERN = /^(\d{4})-(0[1-9]|1[0-2])$/
 
+/**
+ * Current month as `YYYY-MM` in local time. `toISOString()` is avoided because
+ * it is UTC and would return the previous month early on the 1st in JST.
+ */
+export function getCurrentYm(date: Date = new Date()): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
+}
+
 function parseYm(ym: string): { year: number; month: number } | null {
   const match = YM_PATTERN.exec(ym)
   if (!match) return null
@@ -46,10 +54,16 @@ export function buildMonthStrip(
   })
 }
 
-/** Lowest price across all rows, or `NaN` when empty. */
+/**
+ * Lowest numeric price across all rows, or `NaN` when none is numeric.
+ * Surcharge rows like `'合計金額 +30%'` are skipped.
+ */
 export function getMinPrice(prices: PriceRow[]): number {
-  if (prices.length === 0) return NaN
-  return Math.min(...prices.map((row) => row.amount))
+  const amounts = prices
+    .map((row) => Number(row.amount))
+    .filter((amount) => Number.isFinite(amount))
+  if (amounts.length === 0) return NaN
+  return Math.min(...amounts)
 }
 
 export function summarizeAvailability(a: Availability): {
