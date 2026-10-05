@@ -2,10 +2,8 @@ import type { PriceRow } from '#/models/contact'
 
 type PriceTableProps = {
   prices: PriceRow[]
-  note: string
 }
-
-export default function PriceTable({ prices, note }: PriceTableProps) {
+export default function PriceTable({ prices }: PriceTableProps) {
   return (
     <div>
       <table className="w-full border-collapse text-sm">
@@ -18,7 +16,7 @@ export default function PriceTable({ prices, note }: PriceTableProps) {
               Service
             </th>
             <th scope="col" className="kicker pb-3 text-left font-semibold">
-              Amount
+              Description
             </th>
             <th scope="col" className="kicker pb-3 text-left font-semibold">
               Amount
@@ -44,7 +42,8 @@ export default function PriceTable({ prices, note }: PriceTableProps) {
           ))}
         </tbody>
       </table>
-      <p className="mt-6 mb-0 text-sm leading-7 text-(--ink-soft)">{note}</p>
+      {/* <p className="mt-6 mb-0 text-sm leading-7 text-(--ink-soft)">{note}</p> */}
+      <p className="mt-6 mb-0 text-sm leading-7 text-(--ink-soft)">お支払いは基本Paypalもしくは銀行振込になります</p>
     </div>
   )
 }
