@@ -69,7 +69,7 @@ export default function SongLinks({
   className = '',
 }: SongLinksProps) {
   return (
-    <div className={`flex justify-between items-center gap-3 ${className}`}>
+    <div className={`flex justify-between items-center gap-3 p-4 ${className}`}>
       <label className="text-sm text-(--ink-soft)">各種リンク</label>
       <div className="flex justify-between items-center gap-3">
         {youtube && (
@@ -82,7 +82,7 @@ export default function SongLinks({
             className={linkClass}
           >
             <span className="text-sm text-(--ink-soft) hover:underline">
-              Youtube
+              YouTube
             </span>
           </a>
         )}

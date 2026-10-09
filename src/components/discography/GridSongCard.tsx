@@ -35,15 +35,7 @@ export default function GridSongCard({
         />
       </div>
 
-      {featured && <p className="kicker">Featured work</p>}
-
-      {/* タイトル + サービスリンク */}
-      <div
-        className={cn(
-          'flex min-h-9 items-center justify-between gap-4',
-          featured && 'mt-auto',
-        )}
-      >
+      <div className="flex w-full items-end justify-between">
         <h2
           className={cn(
             'font-medium leading-tight text-(--ink)',
@@ -52,6 +44,16 @@ export default function GridSongCard({
         >
           {song.title}
         </h2>
+        {featured && <p className="kicker text-end">Featured work</p>}
+      </div>
+
+      {/* タイトル + サービスリンク */}
+      <div
+        className={cn(
+          'flex min-h-9 items-center justify-between gap-4',
+          featured && 'mt-auto',
+        )}
+      >
         <SongLinks
           youtube={song.links?.youtube}
           niconico={song.links?.niconico}
