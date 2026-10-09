@@ -2,7 +2,7 @@ import { defineCollection } from 'astro:content'
 import { glob } from 'astro/loaders'
 
 /**
- * 依頼の流れの各工程の説明文（Contact ページのダイアログの中身）。
+ * 依頼の流れの各工程の説明文（Contact ページのアコーディオンの中身）。
  * ID はファイル名から拡張子を除いたもの（例: '01_hearing'）。
  */
 const flowItem = defineCollection({

@@ -5,13 +5,6 @@ export type Service = {
   description: string
 }
 
-/** 詳細の MDX は RequestFlow.astro で描画し、RequestFlowStep に children として渡す */
-export type RequestFlowItem = {
-  id: string
-  name: string
-  simpleText?: string
-}
-
 export type PriceRow = {
   serviceId: string
   label: string

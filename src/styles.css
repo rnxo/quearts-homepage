@@ -13,6 +13,7 @@
   --ink-soft: #6b6b66;
   --rule: rgba(17, 17, 17, 0.14);
   --accent-open: #299a5c;
+  --accent-gold: #8a7350;
 }
 
 .dark {
@@ -22,6 +23,7 @@
   --ink-soft: #9a998f;
   --rule: rgba(242, 241, 236, 0.16);
   --accent-open: #5cd68c;
+  --accent-gold: #b9a483;
 }
 
 @layer base {
@@ -104,6 +106,29 @@
     .reveal {
       opacity: 1;
       transform: none;
+      transition: none;
+    }
+  }
+
+  /* Request flow steps (RequestFlow.astro): animate <details> open/close where supported. */
+  .flow-step {
+    interpolate-size: allow-keywords;
+  }
+
+  .flow-step::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 0.3s ease-out,
+      content-visibility 0.3s allow-discrete;
+  }
+
+  .flow-step[open]::details-content {
+    block-size: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flow-step::details-content {
       transition: none;
     }
   }
