@@ -69,43 +69,101 @@ export default function SongLinks({
   className = '',
 }: SongLinksProps) {
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
-      {youtube && (
-        <a
-          href={youtube}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="YouTube"
-          title="YouTube"
-          className={linkClass}
-        >
-          <YouTubeIcon />
-        </a>
-      )}
-      {niconico && (
-        <a
-          href={niconico}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="niconico"
-          title="niconico"
-          className={linkClass}
-        >
-          <NiconicoIcon />
-        </a>
-      )}
-      {piapro && (
-        <a
-          href={piapro}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="piapro"
-          title="piapro(inst)"
-          className={linkClass}
-        >
-          <PiaproIcon />
-        </a>
-      )}
+    <div className={`flex justify-between items-center gap-3 ${className}`}>
+      <label className="text-sm text-(--ink-soft)">各種リンク</label>
+      <div className="flex justify-between items-center gap-3">
+        {youtube && (
+          <a
+            href={youtube}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="YouTube"
+            title="YouTube"
+            className={linkClass}
+          >
+            <span className="text-sm text-(--ink-soft) hover:underline">
+              Youtube
+            </span>
+          </a>
+        )}
+        {niconico && (
+          <a
+            href={niconico}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="niconico"
+            title="niconico"
+            className={linkClass}
+          >
+            <span className="text-sm text-(--ink-soft) hover:underline">
+              ニコニコ
+            </span>
+          </a>
+        )}
+        {piapro && (
+          <a
+            href={piapro}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="piapro"
+            title="piapro(inst)"
+            className={linkClass}
+          >
+            <span className="text-sm text-(--ink-soft) hover:underline">
+              piapro
+            </span>
+          </a>
+        )}
+      </div>
     </div>
   )
 }
+
+// アイコン型リンクのSongLinksコンポーネント
+// export default function SongLinks({
+//   youtube = '',
+//   niconico = '',
+//   piapro = '',
+//   className = '',
+// }: SongLinksProps) {
+//   return (
+//     <div className={`flex items-center gap-3 ${className}`}>
+//       {youtube && (
+//         <a
+//           href={youtube}
+//           target="_blank"
+//           rel="noreferrer"
+//           aria-label="YouTube"
+//           title="YouTube"
+//           className={linkClass}
+//         >
+//           <YouTubeIcon />
+//         </a>
+//       )}
+//       {niconico && (
+//         <a
+//           href={niconico}
+//           target="_blank"
+//           rel="noreferrer"
+//           aria-label="niconico"
+//           title="niconico"
+//           className={linkClass}
+//         >
+//           <NiconicoIcon />
+//         </a>
+//       )}
+//       {piapro && (
+//         <a
+//           href={piapro}
+//           target="_blank"
+//           rel="noreferrer"
+//           aria-label="piapro"
+//           title="piapro(inst)"
+//           className={linkClass}
+//         >
+//           <PiaproIcon />
+//         </a>
+//       )}
+//     </div>
+//   )
+// }

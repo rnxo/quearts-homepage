@@ -5,8 +5,7 @@ type SongCardProps = {
   song: Song
 }
 
-
-export default function SongCard( { song} : SongCardProps ) {  
+export default function SongCard({ song }: SongCardProps) {
   return (
     <div className="flex gap-5 rounded-lg bg-(--paper-sub) shadow-[0_8px_24px_rgba(0,0,0,0.08)] ring-1 ring-(--rule)">
       {/* 音楽画像 */}
@@ -32,7 +31,6 @@ export default function SongCard( { song} : SongCardProps ) {
           youtube={song.links?.youtube}
           niconico={song.links?.niconico}
           piapro={song.links?.piapro}
-          className="flex justify-end items-center"
         />
       </div>
     </div>
