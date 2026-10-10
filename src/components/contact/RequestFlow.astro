@@ -45,62 +45,59 @@ const proseClass =
 ---
 
 <div class="flex w-full flex-col gap-5">
-
-  <ol class="m-0 flex list-none flex-col p-0">
-    {
-      requestFlowItems.map(({ Content, ...flowItem }, index) => {
-        const isLast = index === requestFlowItems.length - 1
-        return (
-          <li class:list={['group/step relative flex gap-3 sm:gap-6', !isLast && 'pb-3.5']}>
-            {/* マーカー同士をつなぐ線。次のマーカーの 6px 手前まで伸ばす */}
-            {!isLast && (
-              <span
-                aria-hidden="true"
-                class="absolute top-[76px] -bottom-4 left-[23.5px] w-px bg-(--rule)"
-              />
-            )}
-            <div class="flex w-12 shrink-0 flex-col items-center pt-[22px]">
-              <span
-                aria-hidden="true"
-                class="flex size-12 items-center justify-center rounded-full border border-(--rule) bg-(--paper) text-lg text-(--ink-soft) transition-colors duration-300 group-has-[details[open]]/step:border-(--accent-gold) group-has-[details[open]]/step:bg-[color-mix(in_srgb,var(--accent-gold)_15%,var(--paper))] group-has-[details[open]]/step:text-(--accent-gold)"
-              >
-                {String(index + 1).padStart(2, '0')}
-              </span>
-            </div>
-
-            <details
-              class="flow-step group min-w-0 flex-1 rounded-[14px] border border-(--rule) bg-(--paper-sub) transition-colors duration-300 open:border-[color-mix(in_srgb,var(--accent-gold)_55%,transparent)] open:bg-[color-mix(in_srgb,var(--accent-gold)_5%,var(--paper-sub))]"
-            >
-              <summary class="flex h-[92px] cursor-pointer list-none items-center gap-4 px-5 sm:gap-6 sm:px-8 [&::-webkit-details-marker]:hidden">
-                <span class="min-w-0 flex-1 text-lg font-medium text-(--ink) sm:text-xl">
-                  {flowItem.name}
-                </span>
-                <span class="hidden text-[10px] tracking-[0.08em] text-(--ink-soft) uppercase transition-colors duration-300 group-open:text-(--accent-gold) sm:inline">
-                  {flowItem.nameEn}
-                </span>
-                <span
-                  aria-hidden="true"
-                  class="flex size-9 shrink-0 items-center justify-center rounded-full border border-(--rule) text-(--ink) transition-colors duration-300 group-open:border-[color-mix(in_srgb,var(--accent-gold)_55%,transparent)] group-open:bg-[color-mix(in_srgb,var(--accent-gold)_15%,var(--paper))] group-open:text-(--accent-gold)"
-                >
-                  <Plus size={14} className="group-open:hidden" />
-                  <Minus size={14} className="hidden group-open:block" />
-                </span>
-              </summary>
-              <div class={`px-5 pb-7 sm:px-8 ${proseClass}`}>
-                <Content components={{ a: ExternalLink }} />
-              </div>
-            </details>
-          </li>
-        )
-      })
-    }
-  </ol>
-
-  <div class="flex flex-wrap items-center justify-between gap-2 pt-1.5 sm:pl-18">
-    <p class="m-0 flex items-center gap-2 text-xs text-(--ink-soft)">
-      <span aria-hidden="true" class="h-px w-4 bg-(--accent-gold)"></span>
-      初めてのご依頼も、お気軽にご相談ください。
+  <div class="flex flex-wrap items-center justify-end gap-2 pt-1.5 sm:pl-18">
+    <p class="m-0 text-xs text-(--ink-soft)">
+      各カードをクリックすると詳細が表示されます
     </p>
-    <p class="m-0 text-xs text-(--ink-soft)">各カードをクリックすると詳細がでます</p>
   </div>
+  <ol class="m-0 flex list-none flex-col p-0">
+    {requestFlowItems.map(({ Content, ...flowItem }, index) => {
+      const isLast = index === requestFlowItems.length - 1
+      return (
+        <li
+          class:list={[
+            'group/step relative flex gap-3 sm:gap-6',
+            !isLast && 'pb-3.5',
+          ]}
+        >
+          {/* マーカー同士をつなぐ線。次のマーカーの 6px 手前まで伸ばす */}
+          {!isLast && (
+            <span
+              aria-hidden="true"
+              class="absolute top-19 -bottom-4 left-[23.5px] w-px bg-(--rule)"
+            />
+          )}
+          <div class="flex w-12 shrink-0 flex-col items-center pt-5">
+            <span
+              aria-hidden="true"
+              class="flex size-12 items-center justify-center rounded-full border border-(--rule) bg-(--paper) text-lg text-(--ink-soft) transition-colors duration-300 group-has-[details[open]]/step:border-(--accent-gold) group-has-[details[open]]/step:bg-[color-mix(in_srgb,var(--accent-gold)_15%,var(--paper))] group-has-[details[open]]/step:text-(--accent-gold)"
+            >
+              {String(index + 1).padStart(2, '0')}
+            </span>
+          </div>
+
+          <details class="flow-step group min-w-0 flex-1 rounded-[14px] border border-(--rule) bg-(--paper-sub) transition-colors duration-300 open:border-[color-mix(in_srgb,var(--accent-gold)_55%,transparent)] open:bg-[color-mix(in_srgb,var(--accent-gold)_5%,var(--paper-sub))]">
+            <summary class="flex h-[92px] cursor-pointer list-none items-center gap-4 px-5 sm:gap-6 sm:px-8 [&::-webkit-details-marker]:hidden">
+              <span class="min-w-0 flex-1 text-lg font-medium text-(--ink) sm:text-xl">
+                {flowItem.name}
+              </span>
+              <span class="hidden text-[10px] tracking-[0.08em] text-(--ink-soft) uppercase transition-colors duration-300 group-open:text-(--accent-gold) sm:inline">
+                {flowItem.nameEn}
+              </span>
+              <span
+                aria-hidden="true"
+                class="flex size-9 shrink-0 items-center justify-center rounded-full border border-(--rule) text-(--ink) transition-colors duration-300 group-open:border-[color-mix(in_srgb,var(--accent-gold)_55%,transparent)] group-open:bg-[color-mix(in_srgb,var(--accent-gold)_15%,var(--paper))] group-open:text-(--accent-gold)"
+              >
+                <Plus size={14} className="group-open:hidden" />
+                <Minus size={14} className="hidden group-open:block" />
+              </span>
+            </summary>
+            <div class={`px-5 pb-7 sm:px-8 ${proseClass}`}>
+              <Content components={{ a: ExternalLink }} />
+            </div>
+          </details>
+        </li>
+      )
+    })}
+  </ol>
 </div>
