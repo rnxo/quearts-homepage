@@ -16,6 +16,10 @@
 10. `git commit -m "<メッセージ>"` <メッセージ>の部分で編集内容を書く
 11. `git push`コマンドを実行して編集内容をgithubに送信・反映させる
 
+### 気軽にサイトの状況を拝見したい場合は、下記URLにてご覧ください
+https://raw.githack.com/rnxo/quearts-homepage/main/demo.html
+
+
 ## 開発
 
 ```bash
