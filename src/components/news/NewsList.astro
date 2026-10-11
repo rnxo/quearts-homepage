@@ -1,40 +1,60 @@
 ---
 import { formatDate } from '#/lib/format'
-import { news } from '#/models/news'
-import SongLinks from '../SongLinks';
+import { sortedNews } from '#/models/news'
+
+const NEW_DAYS = 30
+const now = Date.now()
+const isNew = (iso: string) =>
+  (now - new Date(iso).getTime()) / 86_400_000 <= NEW_DAYS
 ---
 
-<ul class="m-0 list-none p-0">
-  {news.map((item) => (
-    <li class="flex gap-4 sm:gap-6">
-      {/* 左の列: 丸印と縦線。li の高さいっぱいに伸びる */}
-      {/* pt-7 = 右の列の py-6 (24px) + 日付行 20px の中心 - 丸印の半径 6px */}
-      <div
-        aria-hidden="true"
-        class="flex shrink-0 flex-col items-center gap-2 pt-7"
-      >
-        <span class="size-3 shrink-0 rounded-full border border-(--ink)"></span>
-        <span class="w-px flex-1 bg-(--rule)"></span>
-      </div>
-      {/* 右の列: 記事の中身 */}
-      <div class="flex min-w-0 flex-1 flex-col items-start py-6">
-        {/* 日付とタイプタグ: 縦の中央で揃える */}
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="kicker">{formatDate(item.releasedAt)}</span>
-          {/* タイプタグ: 文字の幅だけの小さな丸いラベル */}
-          <span class="inline-flex items-center rounded-full border border-(--rule) bg-(--paper-sub) px-2.5 py-1 text-[10px] leading-none font-semibold tracking-[0.16em] text-(--ink-soft) uppercase">
-            { item.category }
+<ul class="m-0 mx-auto max-w-[880px] list-none border-b border-(--rule) p-0">
+  {sortedNews.map((item) => {
+    // リンクがある記事だけ、行全体を押せるようにする
+    const href = item.links?.youtube
+    const Row = href ? 'a' : 'div'
+    return (
+      <li class="border-b border-(--rule)">
+        <Row
+          href={href}
+          target={href ? '_blank' : undefined}
+          rel={href ? 'noreferrer' : undefined}
+          class:list={[
+            'group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-6 px-2 py-6.5 text-(--ink) no-underline',
+            href &&
+              'transition-colors hover:bg-(--paper-sub) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--ink) motion-reduce:transition-none',
+          ]}
+        >
+          <span class="min-w-0">
+            {/* 1段目: NEW、日付、カテゴリ */}
+            <span class="flex items-baseline gap-3 text-[13px] tracking-[0.06em] text-(--ink-soft) tabular-nums">
+              {isNew(item.releasedAt) && (
+                <span class="text-[11px] font-semibold tracking-[0.16em] text-(--accent)">
+                  NEW
+                </span>
+              )}
+              <time datetime={item.releasedAt}>
+                {formatDate(item.releasedAt)}
+              </time>
+              <span class="text-[11px] tracking-[0.16em] uppercase">
+                {item.category}
+              </span>
+            </span>
+            {/* 2段目: タイトル */}
+            <span class="mt-1.5 block text-[17px] leading-relaxed font-medium text-pretty decoration-1 underline-offset-[6px] group-hover:underline sm:text-xl">
+              {item.title}
+            </span>
           </span>
-        </div>
-        <h3 class="mt-3 text-xl leading-snug font-bold sm:text-2xl">
-          {item.title}
-        </h3>
-        <SongLinks 
-          youtube={item.links?.youtube}
-          niconico={item.links?.niconico}
-          piapro={item.links?.piapro}
-        />
-      </div>
-    </li>
-  ))}
+          {href && (
+            <span
+              aria-hidden="true"
+              class="text-base text-(--ink-soft) transition-transform group-hover:translate-x-1 group-hover:text-(--ink) motion-reduce:transition-none"
+            >
+              →
+            </span>
+          )}
+        </Row>
+      </li>
+    )
+  })}
 </ul>

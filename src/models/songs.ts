@@ -4,6 +4,7 @@ export type ArtWorkUrl = {
   piapro?: string;
 }
 
+
 export type Song = {
   slug: string;
   title: string;

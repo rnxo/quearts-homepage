@@ -5,7 +5,7 @@ import SectionHeading from '#/components/SectionHeading'
 import SongCard from '#/components/SongCard'
 import { site } from '#/data/site'
 import { songs } from '#/models/songs'
-import { news } from '#/models/news'
+import { sortedNews } from '#/models/news'
 ---
 
 <BaseLayout>
@@ -41,7 +41,7 @@ import { news } from '#/models/news'
       </Reveal>
       <Reveal client:visible>
         <ul class="m-0 list-none p-0">
-          {news.map((newsItem) => (
+          {sortedNews.map((newsItem) => (
             <li class="flex flex-col gap-1 border-b border-[var(--rule)] py-5 sm:flex-row sm:items-baseline sm:gap-6">
               <span class="kicker shrink-0">{newsItem.releasedAt}</span>
               <span class="text-sm">{newsItem.title}</span>

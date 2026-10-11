@@ -8,7 +8,7 @@ export type News = {
   links?: ArtWorkUrl
 }
 
-export const news: News[] = [
+const news: News[] = [
   {
     category: 'music',
     title: '「リプル」を公開しました',
@@ -28,3 +28,9 @@ export const news: News[] = [
     links: linksOf('tokeru')
   },
 ]
+
+// 新しい順に並べる
+export const sortedNews = news.sort((a, b) =>
+  b.releasedAt.localeCompare(a.releasedAt),
+)
+

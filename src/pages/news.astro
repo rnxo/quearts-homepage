@@ -2,23 +2,12 @@
 import BaseLayout from '#/layouts/BaseLayout.astro'
 import Reveal from '#/components/Reveal'
 import NewsList from '#/components/news/NewsList.astro'
-//import SongLinks from '#/components/SongLinks'
-// import { formatDate } from '#/lib/format'
-// import { news } from '#/models/news'
-// import { songs } from '#/models/songs'
-
-// 左右交互型のタイムライン用。お知らせごとに、関連する曲（画像と配信リンク）を引いておく
-// const entries = news.map((item) => ({
-//   item,
-//   song: songs.find((song) => song.slug === item.songSlug),
-// }))
 ---
 
 <BaseLayout title="News — Quearts">
   <main class="page-wrap px-4 py-16 sm:px-6 sm:py-20">
     <Reveal client:visible>
-      <p class="kicker mb-4">News</p>
-      <h1 class="display text-3xl sm:text-5xl">Announcements</h1>
+      <h1 class="display text-3xl sm:text-5xl text-center">News</h1>
       <hr class="rule-line mt-8" />
     </Reveal>
 
@@ -27,86 +16,5 @@ import NewsList from '#/components/news/NewsList.astro'
         <NewsList />
       </Reveal>
     </div>
-
-    <!-- {/* 左右交互型のタイムライン */}
-    {/* md 以上: 中央線をはさんで、カードと日付を左右交互に置く */}
-    {/* md 未満: 線を左端に寄せ、日付とカードを縦一列に並べる */}
-    <Reveal client:visible>
-      <ol class="relative m-0 mt-4 list-none p-0 pt-10">
-        {/* 縦線: モバイルは丸印の中心 (左から 6px)、md 以上は左右の中央 */}
-        <span
-          aria-hidden="true"
-          class="absolute inset-y-0 left-1.5 w-px -translate-x-1/2 bg-(--rule) md:left-1/2"
-        ></span>
-        {entries.map(({ item, song }, index) => {
-          // 偶数番目 (0, 2, ...) はカードを右、日付を左に置く
-          const cardOnRight = index % 2 === 0
-          return (
-            <li class="relative mb-12 grid grid-cols-[0.75rem_minmax(0,1fr)] gap-x-5 gap-y-3 md:grid-cols-[minmax(0,1fr)_0.75rem_minmax(0,1fr)] md:gap-x-12">
-              {/* 丸印: 日付の行 (高さ 20px) の中央に合わせる */}
-              <span
-                aria-hidden="true"
-                class="relative z-10 col-start-1 row-start-1 mt-1 size-3 rounded-full border border-(--ink) bg-(--paper) md:col-start-2"
-              ></span>
-
-              {/* 日付とタグ: カードと反対側に置き、線に近い側へ寄せる */}
-              <div
-                class:list={[
-                  'col-start-2 row-start-1 flex h-5 flex-wrap items-center gap-3',
-                  cardOnRight
-                    ? 'md:col-start-1 md:justify-end'
-                    : 'md:col-start-3',
-                ]}
-              >
-                <time class="kicker" datetime={item.releasedAt}>
-                  {formatDate(item.releasedAt)}
-                </time>
-                <span class="inline-flex items-center rounded-full border border-(--rule) bg-(--paper-sub) px-2.5 py-1 text-[10px] leading-none font-semibold tracking-[0.16em] text-(--ink-soft) uppercase">
-                  {item.category}
-                </span>
-              </div>
-
-              {/* カード: 曲の画像、タイトル、本文、配信リンク */}
-              <article
-                class:list={[
-                  'col-start-2 row-start-2 min-w-0 overflow-hidden border border-(--rule) bg-(--paper) md:row-start-1',
-                  cardOnRight ? 'md:col-start-3' : 'md:col-start-1',
-                ]}
-              >
-                {song && (
-                  <img
-                    src={`/assets/songs/${song.slug}.png`}
-                    alt={`${song.title} のサムネイル`}
-                    width={1920}
-                    height={1080}
-                    loading="lazy"
-                    decoding="async"
-                    class="block aspect-video w-full border-b border-(--rule) object-cover"
-                  />
-                )}
-                <div class="flex flex-col gap-2 p-5 sm:p-6">
-                  <h3 class="text-lg leading-snug font-bold sm:text-xl">
-                    {item.title}
-                  </h3>
-                  {item.body && (
-                    <p class="text-sm leading-7 text-(--ink-soft)">
-                      {item.body}
-                    </p>
-                  )}
-                  {song?.links && (
-                    <SongLinks
-                      youtube={song.links.youtube}
-                      niconico={song.links.niconico}
-                      piapro={song.links.piapro}
-                      className="flex-wrap px-0 pt-2 pb-0"
-                    />
-                  )}
-                </div>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
-    </Reveal> -->
   </main>
 </BaseLayout>
