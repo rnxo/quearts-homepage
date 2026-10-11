@@ -13,7 +13,14 @@
   --ink-soft: #6b6b66;
   --rule: rgba(17, 17, 17, 0.14);
   --accent-open: #299a5c;
-  --accent-gold: #8a7350;
+  /* 強調色。ライトは暖色を使わず墨色にする */
+  --accent: var(--ink);
+  /* 依頼の流れ（RequestFlow.astro）のステップの色 */
+  --flow-card: var(--paper);
+  --flow-card-open: #ffffff;
+  --flow-card-open-border: var(--ink);
+  --flow-badge-open: var(--ink);
+  --flow-badge-open-fg: var(--paper);
 }
 
 .dark {
@@ -23,7 +30,12 @@
   --ink-soft: #9a998f;
   --rule: rgba(242, 241, 236, 0.16);
   --accent-open: #5cd68c;
-  --accent-gold: #b9a483;
+  --accent: #b9a483;
+  --flow-card: var(--paper-sub);
+  --flow-card-open: color-mix(in srgb, var(--accent) 5%, var(--paper-sub));
+  --flow-card-open-border: color-mix(in srgb, var(--accent) 55%, transparent);
+  --flow-badge-open: color-mix(in srgb, var(--accent) 15%, var(--paper));
+  --flow-badge-open-fg: var(--accent);
 }
 
 @layer base {
@@ -49,6 +61,46 @@
 }
 
 @layer components {
+  /*
+   * MDX の本文用。依頼の流れなど、狭い枠の中の説明文に使う。
+   * 使う側で Tailwind のクラスを足すと、部分的に上書きできる（例: class="prose-compact leading-7"）。
+   */
+  .prose-compact {
+    /* 土台: @tailwindcss/typography の小さめサイズ */
+    @apply prose prose-sm;
+
+    /* 要素ごとの上下の余白を、記事向けの標準より詰める */
+    @apply prose-p:my-1.5 prose-hr:my-5 prose-ul:my-3 prose-li:my-0.5;
+
+    /* prose-sm の指定を上書きするので @apply ではなく素の CSS で書く */
+    max-width: none; /* prose の 1 行約 65 文字の制限を外し、親の幅いっぱいにする */
+    text-align: left;
+    line-height: 2rem;
+
+    /* 色をサイトの CSS 変数に合わせる。ダークモードでも自動で切り替わる */
+    --tw-prose-body: var(--ink-soft);
+    --tw-prose-bold: var(--ink);
+    --tw-prose-headings: var(--ink);
+    --tw-prose-links: var(--accent);
+    --tw-prose-bullets: var(--ink-soft);
+    --tw-prose-counters: var(--ink-soft);
+    --tw-prose-quotes: var(--ink-soft);
+    --tw-prose-quote-borders: var(--rule);
+    --tw-prose-hr: var(--rule);
+    --tw-prose-th-borders: var(--rule);
+    --tw-prose-td-borders: var(--rule);
+  }
+
+  /* 枠の上端と下端に余計なすき間を作らない */
+  .prose-compact > :first-child {
+    margin-top: 0;
+  }
+
+  .prose-compact > :last-child {
+    margin-bottom: 0;
+  }
+
+
   .page-wrap {
     max-width: 1120px;
     margin-inline: auto;

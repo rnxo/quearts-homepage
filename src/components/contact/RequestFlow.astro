@@ -39,9 +39,6 @@ const requestFlowItems = await Promise.all(
     return { ...flowItem, Content }
   }),
 )
-
-const proseClass =
-  'prose prose-sm max-w-none text-left leading-8 prose-p:my-1.5 prose-hr:my-5 prose-ul:my-3 prose-li:my-0.5 [--tw-prose-body:var(--ink-soft)] [--tw-prose-bold:var(--ink)] [--tw-prose-bullets:var(--ink-soft)] [--tw-prose-counters:var(--ink-soft)] [--tw-prose-headings:var(--ink)] [--tw-prose-hr:var(--rule)] [--tw-prose-links:var(--accent-gold)] [--tw-prose-quote-borders:var(--rule)] [--tw-prose-quotes:var(--ink-soft)] [--tw-prose-td-borders:var(--rule)] [--tw-prose-th-borders:var(--rule)] [&>:first-child]:mt-0 [&>:last-child]:mb-0'
 ---
 
 <div class="flex w-full flex-col gap-5">
@@ -70,29 +67,30 @@ const proseClass =
           <div class="flex w-12 shrink-0 flex-col items-center pt-5">
             <span
               aria-hidden="true"
-              class="flex size-12 items-center justify-center rounded-full border border-(--rule) bg-(--paper) text-lg text-(--ink-soft) transition-colors duration-300 group-has-[details[open]]/step:border-(--accent-gold) group-has-[details[open]]/step:bg-[color-mix(in_srgb,var(--accent-gold)_15%,var(--paper))] group-has-[details[open]]/step:text-(--accent-gold)"
+              class="flex size-12 items-center justify-center rounded-full border border-(--rule) bg-(--paper) text-lg text-(--ink-soft) transition-colors duration-300 group-has-[details[open]]/step:border-(--accent) group-has-[details[open]]/step:bg-(--flow-badge-open) group-has-[details[open]]/step:text-(--flow-badge-open-fg)"
             >
               {String(index + 1).padStart(2, '0')}
             </span>
           </div>
 
-          <details class="flow-step group min-w-0 flex-1 rounded-[14px] border border-(--rule) bg-(--paper-sub) transition-colors duration-300 open:border-[color-mix(in_srgb,var(--accent-gold)_55%,transparent)] open:bg-[color-mix(in_srgb,var(--accent-gold)_5%,var(--paper-sub))]">
+          <details class="flow-step group min-w-0 flex-1 rounded-[14px] border border-(--rule) bg-(--flow-card) transition-colors duration-300 open:border-(--flow-card-open-border) open:bg-(--flow-card-open)">
             <summary class="flex h-[92px] cursor-pointer list-none items-center gap-4 px-5 sm:gap-6 sm:px-8 [&::-webkit-details-marker]:hidden">
               <span class="min-w-0 flex-1 text-lg font-medium text-(--ink) sm:text-xl">
                 {flowItem.name}
               </span>
-              <span class="hidden text-[10px] tracking-[0.08em] text-(--ink-soft) uppercase transition-colors duration-300 group-open:text-(--accent-gold) sm:inline">
+              <span class="hidden text-[10px] tracking-[0.08em] text-(--ink-soft) uppercase transition-colors duration-300 group-open:text-(--accent) sm:inline">
                 {flowItem.nameEn}
               </span>
               <span
                 aria-hidden="true"
-                class="flex size-9 shrink-0 items-center justify-center rounded-full border border-(--rule) text-(--ink) transition-colors duration-300 group-open:border-[color-mix(in_srgb,var(--accent-gold)_55%,transparent)] group-open:bg-[color-mix(in_srgb,var(--accent-gold)_15%,var(--paper))] group-open:text-(--accent-gold)"
+                class="flex size-9 shrink-0 items-center justify-center rounded-full border border-(--rule) text-(--ink) transition-colors duration-300 group-open:border-(--flow-card-open-border) group-open:bg-(--flow-badge-open) group-open:text-(--flow-badge-open-fg)"
               >
                 <Plus size={14} className="group-open:hidden" />
                 <Minus size={14} className="hidden group-open:block" />
               </span>
             </summary>
-            <div class={`px-5 pb-7 sm:px-8 ${proseClass}`}>
+            {/* 本文の見た目は styles.css の .prose-compact */}
+            <div class="prose-compact px-5 pb-7 sm:px-8">
               <Content components={{ a: ExternalLink }} />
             </div>
           </details>
