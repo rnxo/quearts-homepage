@@ -2,7 +2,7 @@
 import { formatDate } from '#/lib/format'
 import { sortedNews } from '#/models/news'
 
-const NEW_DAYS = 30
+const NEW_DAYS = 7
 const now = Date.now()
 const isNew = (iso: string) =>
   (now - new Date(iso).getTime()) / 86_400_000 <= NEW_DAYS
