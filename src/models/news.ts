@@ -1,27 +1,30 @@
+import type { ArtWorkUrl } from "./songs"
+import { linksOf } from "#/lib/linksOf"
+
 export type News = {
+  category: 'music' | 'info'
   title: string
-  body: string
   releasedAt: string
-  category: string
+  links?: ArtWorkUrl
 }
 
 export const news: News[] = [
   {
+    category: 'music',
     title: '「リプル」を公開しました',
-    body: '「リプル」を公開しました',
     releasedAt: '2026-09-24',
-    category: 'music',
+    links: linksOf('ripuru')
   },
   {
+    category: 'music',
     title: '「廃りの病」を公開しました',
-    body: '「廃りの病」を公開しました',
     releasedAt: '2026-09-18',
-    category: 'music',
+    links: linksOf('sutari-yamai')
   },
   {
-    title: '「とける」を公開しました',
-    body: '「とける」を公開しました',
-    releasedAt: '2026-08-20',
     category: 'music',
+    title: '「とける」を公開しました',
+    releasedAt: '2026-08-20',
+    links: linksOf('tokeru')
   },
 ]

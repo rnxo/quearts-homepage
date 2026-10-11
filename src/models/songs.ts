@@ -1,9 +1,8 @@
-type ArtWorkUrl = {
+export type ArtWorkUrl = {
   youtube?: string;
   niconico?: string;
   piapro?: string;
 }
-
 
 export type Song = {
   slug: string;
