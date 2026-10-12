@@ -6,6 +6,8 @@ export type TimelineEntry = {
 // Drafted from what's publicly confirmed (note.com/quearts_vocaloid bio +
 // the "描く足跡" video description) — please review/expand with Quearts directly.
 export const profile = {
+  // ホームの自己紹介で大きく見せる一文。bio からの抜粋。
+  lead: '曲の制作過程で書いた短編小説が、そのまま一曲になることもある。',
   bio: [
     'Quearts（クアーツ）は、初音ミクなどのボーカロイドを使って楽曲を投稿しているクリエイター。',
     '曲の制作過程で書いた短編小説がそのまま一曲になることもあり、楽曲ごとに物語を添えて発表するスタイルが特徴。',
