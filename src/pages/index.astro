@@ -3,7 +3,6 @@ import BaseLayout from "#/layouts/BaseLayout.astro";
 import Reveal from "#/components/Reveal";
 import SectionHeading from "#/components/SectionHeading";
 import SongCard from "#/components/SongCard";
-import { profile } from "#/data/profile";
 import { songs } from "#/models/songs";
 import { sortedNews } from "#/models/news";
 ---
@@ -22,36 +21,28 @@ import { sortedNews } from "#/models/news";
   <main class="page-wrap px-4 pb-24 sm:px-6">
     {/* 自己紹介 */}
     <section class="relative -mt-16 sm:-mt-24 border-b border-(--rule)">
-      <div class="grid grid-cols-1 items-end gap-5 md:grid-cols-[220px_minmax(0,1fr)] md:gap-14">
-        <img
-          src="/assets/quearts-icon.png"
-          alt="quearts-icon"
-          width={220}
-          height={220}
-          class="aspect-square w-32 rounded-full border-4 border-(--paper) object-cover md:w-[220px]"
-        />
-        <div class="grid gap-3.5 md:pb-4">
+      <div class="grid grid-cols-3 gap-5 mb-16">
+        <div class="flex justify-center items-center">
+          <img
+            src="/assets/quearts-icon.png"
+            alt="quearts-icon"
+            width={220}
+            height={220}
+            class="aspect-square w-32 rounded-full border-4 border-(--paper) object-cover md:w-55"
+          />
+        </div>
+        <div class="flex flex-col justify-center items-start">
           <p class="kicker m-0">VOCALOID PRODUCER</p>
           <h1 class="display text-[clamp(2.6rem,7vw,4.4rem)]">Quearts</h1>
-          <span class="text-sm tracking-[0.4em] text-(--ink-soft)">
-            音楽が好き
-          </span>
+        </div>
+        <!-- <div class="border w-px h-[80%]"></div> -->
+        <div class="flex justify-start items-center">
+          <p class="mt-6 max-w-[36em] text-sm leading-[2.1] text-(--ink-soft)">
+            活動内容をこちらに記載する（もしくはこの欄ごとなしにする）
+          </p>
         </div>
       </div>
 
-      <Reveal client:visible>
-        <div class="mt-12 grid grid-cols-1 gap-5 md:mt-16 md:grid-cols-[220px_minmax(0,1fr)] md:gap-14 mb-20">
-          <p class="kicker m-0 hidden md:block">About</p>
-          <div>
-            <blockquote class="m-0 max-w-[30em] text-[clamp(1.15rem,2.2vw,1.55rem)] leading-loose font-medium tracking-[0.06em] text-pretty">
-              スローガン的なやつをここに書く
-            </blockquote>
-            <p class="mt-6 max-w-[36em] text-sm leading-[2.1] text-(--ink-soft)">
-              {profile.bio.join("")}
-            </p>
-          </div>
-        </div>
-      </Reveal>
     </section>
     {/* ニュースリスト */}
     <div class="my-20">
