@@ -1,4 +1,5 @@
-import type { Availability, PriceRow } from '#/models/contact'
+import type { PriceRow } from '#/models/contact/price.model'
+import type { Availability } from '#/models/contact/status.model'
 
 export type MonthCell = {
   ym: string // YYYY-MM

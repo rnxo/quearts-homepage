@@ -1,4 +1,4 @@
-import type { PriceRow } from '#/models/contact'
+import type { PriceRow } from '#/models/contact/price.model'
 
 type PriceTableProps = {
   prices: PriceRow[]

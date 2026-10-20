@@ -1,4 +1,4 @@
-import type { Service } from '#/models/contact'
+import type { Service } from '#/models/contact/service.model'
 
 type ServicesPanelProps = {
   services: Service[]
@@ -18,7 +18,7 @@ export default function ServicesPanel({ services }: ServicesPanelProps) {
               {service.nameEn}
             </span>
           </dt>
-          <dd className="m-0 text-sm leading-7 text-(--ink-soft)">
+          <dd className="flex justify-end mx-4 text-sm leading-7 text-(--ink-soft)">
             {service.description}
           </dd>
         </div>

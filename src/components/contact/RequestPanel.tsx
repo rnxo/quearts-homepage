@@ -1,6 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { cn } from '#/lib/utils'
-import type { RequestLink } from '#/models/contact'
+import type { RequestLink } from '#/models/contact/request.model'
 
 const OPEN_LABELS: Record<RequestLink['id'], string> = {
   'google-form': 'フォームを開く',
