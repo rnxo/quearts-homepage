@@ -1,0 +1,34 @@
+---
+import { getCurrentYm, summarizeAvailability } from "#/lib/contact.function";
+import { availability } from "#/models/contact/status.model";
+import DisplayCard from "./DisplayCard.astro";
+import StatusPanel from "./StatusPanel";
+
+const status = summarizeAvailability(availability);
+const initialYm = getCurrentYm();
+---
+
+<DisplayCard id="status" index="01" title="受付状況" kicker="STATUS">
+  <span
+    slot="summary"
+    class={status.isOpen ? "text-(--accent-open)" : "text-(--ink-soft)"}
+  >
+    {status.isOpen ? `● ${status.short}` : status.short}
+  </span>
+  {
+    status.isOpen ? (
+      <StatusPanel
+        client:load
+        bookedUntil={availability.bookedUntil}
+        initialYm={initialYm}
+        note={availability.note}
+      />
+    ) : (
+      <div class="flex flex-col justify-center items-center">
+        <span class="text-center text-2xl font-bold">
+          ----- 現在受付停止中 -----
+        </span>
+      </div>
+    )
+  }
+</DisplayCard>

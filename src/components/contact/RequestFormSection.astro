@@ -1,0 +1,15 @@
+---
+import DisplayCard from "#/components/contact/DisplayCard.astro";
+import RequestPanel from "#/components/contact/RequestPanel.astro";
+import { requestLinks } from "#/models/contact/request.model";
+---
+
+<DisplayCard
+  id="request"
+  index="05"
+  title="依頼フォーム"
+  kicker="Request"
+  summary="Google Form / FEAT"
+>
+  <RequestPanel links={requestLinks} />
+</DisplayCard>

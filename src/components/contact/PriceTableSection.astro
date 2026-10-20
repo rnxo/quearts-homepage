@@ -1,0 +1,22 @@
+---
+import PriceTable from "#/components/contact/PriceTable.astro";
+import AccordionItem from "#/components/contact/AccordionItem";
+import { prices } from "#/models/contact/price.model";
+import { getMinPrice } from "#/lib/contact.function";
+import { formatYen } from "#/lib/format";
+
+const minPrice = getMinPrice(prices);
+
+const priceSummary = Number.isNaN(minPrice) ? "—" : `${formatYen(minPrice)}〜`;
+---
+
+<AccordionItem
+  client:visible
+  id="price"
+  index="04"
+  title="料金表"
+  kicker="Price"
+  summary={priceSummary}
+>
+  <PriceTable prices={prices} />
+</AccordionItem>

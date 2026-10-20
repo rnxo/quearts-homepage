@@ -1,0 +1,16 @@
+---
+import AccordionItem from "#/components/contact/AccordionItem";
+import ServicesPanel from "#/components/contact/ServicesPanel.astro";
+import { services } from "#/models/contact/service.model";
+---
+
+<AccordionItem
+  client:visible
+  id="services"
+  index="02"
+  title="依頼できること"
+  kicker="Services"
+  summary="作曲・編曲・作詞・BGM制作・MIX・一括"
+>
+  <ServicesPanel services={services} />
+</AccordionItem>
