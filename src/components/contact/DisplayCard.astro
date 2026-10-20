@@ -1,0 +1,59 @@
+---
+import { cn } from '#/lib/utils'
+
+type Props = {
+  id: string
+  index?: string
+  title?: string
+  kicker?: string
+  // Plain text. Pass `slot="summary"` instead when it needs markup.
+  summary?: string
+}
+
+const { id, index, title, kicker, summary } = Astro.props
+const headingId = `${id}-heading`
+const panelId = `${id}-panel`
+---
+
+{/* Always-open card with the same look as an open AccordionItem. */}
+<div
+  id={id}
+  class={cn(
+    'scroll-mt-24 border-t border-(--rule) transition-colors duration-300 last:border-b',
+    // An open item floats as a card, so the rule after it is replaced by space.
+    '[[data-state=open]+&]:border-t-transparent',
+    'my-2 rounded-[10px] border-transparent bg-(--paper-sub) ring-1 ring-(--rule) last:border-b-transparent',
+  )}
+>
+  <h3 class="m-0">
+    <div
+      id={headingId}
+      class="grid w-full grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-1 px-4 py-6 text-left sm:grid-cols-[2rem_minmax(0,1fr)_auto_auto] sm:px-6"
+    >
+      <span class="kicker col-start-1 row-start-1 tracking-[0.14em]">
+        {index}
+      </span>
+      <span class="col-start-2 row-start-1 flex min-w-0 items-baseline gap-3">
+        <span class="text-xl font-bold tracking-[0.04em] text-(--ink) sm:text-2xl">
+          {title}
+        </span>
+        <span class="kicker hidden sm:inline">{kicker}</span>
+      </span>
+      <span class="col-start-2 row-start-2 min-w-0 truncate text-sm text-(--ink-soft) sm:col-start-3 sm:row-start-1 sm:max-w-80">
+        <slot name="summary">{summary}</slot>
+      </span>
+    </div>
+  </h3>
+  <div
+    role="region"
+    id={panelId}
+    aria-labelledby={headingId}
+    class="grid grid-rows-[1fr]"
+  >
+    <div class="overflow-hidden">
+      <div class="mx-4 border-t border-(--rule) pt-6 pb-8 sm:mr-6 sm:ml-18">
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>

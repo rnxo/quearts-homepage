@@ -1,0 +1,104 @@
+---
+type Props = {
+  youtube?: string
+  niconico?: string
+  piapro?: string
+  class?: string
+}
+
+const {
+  youtube = '',
+  niconico = '',
+  piapro = '',
+  class: className = '',
+} = Astro.props
+
+const linkClass =
+  'nav-link inline-flex items-center justify-center rounded-md p-2 ring-1 ring-(--rule) transition-colors hover:bg-(--paper)'
+
+// アイコン型リンクのSongLinksコンポーネント
+// import YouTubeIcon from '#/components/icons/YouTubeIcon.astro'
+// import NiconicoIcon from '#/components/icons/NiconicoIcon.astro'
+// import PiaproIcon from '#/components/icons/PiaproIcon.astro'
+//
+// <div class={`flex items-center gap-3 ${className}`}>
+//   {youtube && (
+//     <a
+//       href={youtube}
+//       target="_blank"
+//       rel="noreferrer"
+//       aria-label="YouTube"
+//       title="YouTube"
+//       class={linkClass}
+//     >
+//       <YouTubeIcon />
+//     </a>
+//   )}
+//   {niconico && (
+//     <a
+//       href={niconico}
+//       target="_blank"
+//       rel="noreferrer"
+//       aria-label="niconico"
+//       title="niconico"
+//       class={linkClass}
+//     >
+//       <NiconicoIcon />
+//     </a>
+//   )}
+//   {piapro && (
+//     <a
+//       href={piapro}
+//       target="_blank"
+//       rel="noreferrer"
+//       aria-label="piapro"
+//       title="piapro(inst)"
+//       class={linkClass}
+//     >
+//       <PiaproIcon />
+//     </a>
+//   )}
+// </div>
+---
+
+<div class={`flex justify-between items-center gap-3 p-4 ${className}`}>
+  <label class="text-sm text-(--ink-soft)">各種リンク</label>
+  <div class="flex justify-between items-center gap-3">
+    {youtube && (
+      <a
+        href={youtube}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="YouTube"
+        title="YouTube"
+        class={linkClass}
+      >
+        <span class="text-sm text-(--ink-soft) hover:underline">YouTube</span>
+      </a>
+    )}
+    {niconico && (
+      <a
+        href={niconico}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="niconico"
+        title="niconico"
+        class={linkClass}
+      >
+        <span class="text-sm text-(--ink-soft) hover:underline">ニコニコ</span>
+      </a>
+    )}
+    {piapro && (
+      <a
+        href={piapro}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="piapro"
+        title="piapro(inst)"
+        class={linkClass}
+      >
+        <span class="text-sm text-(--ink-soft) hover:underline">piapro</span>
+      </a>
+    )}
+  </div>
+</div>

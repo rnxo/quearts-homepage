@@ -1,0 +1,14 @@
+---
+import { cn } from '#/lib/utils'
+
+type Props = {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+{/* Vertical list of AccordionItems separated by rules. */}
+<div class={cn('flex flex-col', className)}>
+  <slot />
+</div>

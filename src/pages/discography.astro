@@ -2,7 +2,7 @@
 import BaseLayout from '#/layouts/BaseLayout.astro'
 import Reveal from '#/components/Reveal'
 import { DiscoSongs } from '#/models/songs'
-import SquareSongCard from '#/components/discography/SquareSongCard'
+import SquareSongCard from '#/components/discography/SquareSongCard.astro'
 
 // 案C — 主役をつくる非対称グリッド
 // 先頭の曲を主役として大きく、次の2曲を右に縦積み、残りを下段に並べる
@@ -35,6 +35,6 @@ import SquareSongCard from '#/components/discography/SquareSongCard'
         className="-mx-4 sm:-mx-6"
       >
         {DiscoSongs.map((song) => (
-          <SquareSongCard song={song} className="hscroll-track-item" />
+          <SquareSongCard song={song} class="hscroll-track-item" />
         ))}
       </HorizontalScrollContainer> -->

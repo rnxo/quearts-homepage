@@ -1,5 +1,5 @@
 ---
-import { Minus, Plus } from 'lucide-react'
+import { Minus, Plus } from '@lucide/astro'
 import { getEntry, render } from 'astro:content'
 import ExternalLink from './ExternalLink.astro'
 
@@ -85,8 +85,8 @@ const requestFlowItems = await Promise.all(
                 aria-hidden="true"
                 class="flex size-9 shrink-0 items-center justify-center rounded-full border border-(--rule) text-(--ink) transition-colors duration-300 group-open:border-(--flow-card-open-border) group-open:bg-(--flow-badge-open) group-open:text-(--flow-badge-open-fg)"
               >
-                <Plus size={14} className="group-open:hidden" />
-                <Minus size={14} className="hidden group-open:block" />
+                <Plus size={14} class="group-open:hidden" />
+                <Minus size={14} class="hidden group-open:block" />
               </span>
             </summary>
             {/* 本文の見た目は styles.css の .prose-compact */}

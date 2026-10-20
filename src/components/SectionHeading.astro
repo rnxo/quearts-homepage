@@ -1,0 +1,19 @@
+---
+type Props = {
+  kicker: string
+  title: string
+}
+
+const { kicker, title } = Astro.props
+---
+
+<div>
+  <div class="flex items-end justify-between gap-4">
+    <div>
+      <p class="kicker mb-2">{kicker}</p>
+      <h2 class="display text-2xl sm:text-3xl">{title}</h2>
+    </div>
+    <slot name="action" />
+  </div>
+  <hr class="rule-line mt-5" />
+</div>

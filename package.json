@@ -17,6 +17,7 @@
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",
     "@astrojs/react": "^7.0.0",
+    "@lucide/astro": "^1.60.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^7.3.5",
     "class-variance-authority": "^0.7.1",
