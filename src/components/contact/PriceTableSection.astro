@@ -6,7 +6,6 @@ import { getMinPrice } from "#/lib/contact.function";
 import { formatYen } from "#/lib/format";
 
 const minPrice = getMinPrice(prices);
-
 const priceSummary = Number.isNaN(minPrice) ? "—" : `${formatYen(minPrice)}〜`;
 ---
 

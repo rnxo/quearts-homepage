@@ -21,7 +21,7 @@ import { sortedNews } from "#/models/news";
   <main class="page-wrap px-4 pb-24 sm:px-6">
     {/* 自己紹介 */}
     <section class="relative -mt-16 sm:-mt-24 border-b border-(--rule)">
-      <div class="grid grid-cols-3 gap-5 mb-16">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-16">
         <div class="flex justify-center items-center">
           <img
             src="/assets/quearts-icon.png"
@@ -31,13 +31,13 @@ import { sortedNews } from "#/models/news";
             class="aspect-square w-32 rounded-full border-4 border-(--paper) object-cover md:w-55"
           />
         </div>
-        <div class="flex flex-col justify-center items-start">
+        <div class="flex flex-col justify-center items-center sm:items-start">
           <p class="kicker m-0">VOCALOID PRODUCER</p>
           <h1 class="display text-[clamp(2.6rem,7vw,4.4rem)]">Quearts</h1>
         </div>
         <!-- <div class="border w-px h-[80%]"></div> -->
-        <div class="flex justify-start items-center">
-          <p class="mt-6 max-w-[36em] text-sm leading-[2.1] text-(--ink-soft)">
+        <div class="flex justify-center sm:justify-start items-center">
+          <p class="mt-6 max-w-[36em] text-center sm:text-left text-sm leading-[2.1] text-(--ink-soft)">
             活動内容をこちらに記載する（もしくはこの欄ごとなしにする）
           </p>
         </div>
