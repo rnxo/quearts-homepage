@@ -1,104 +1,49 @@
 ---
 type Props = {
-  youtube?: string
-  niconico?: string
-  piapro?: string
-  class?: string
-}
+  youtube?: string;
+  niconico?: string;
+  piapro?: string;
+  class?: string;
+};
 
 const {
-  youtube = '',
-  niconico = '',
-  piapro = '',
-  class: className = '',
-} = Astro.props
+  youtube = "",
+  niconico = "",
+  piapro = "",
+  class: className = "",
+} = Astro.props;
 
-const linkClass =
-  'nav-link inline-flex items-center justify-center rounded-md p-2 ring-1 ring-(--rule) transition-colors hover:bg-(--paper)'
-
-// アイコン型リンクのSongLinksコンポーネント
-// import YouTubeIcon from '#/components/icons/YouTubeIcon.astro'
-// import NiconicoIcon from '#/components/icons/NiconicoIcon.astro'
-// import PiaproIcon from '#/components/icons/PiaproIcon.astro'
-//
-// <div class={`flex items-center gap-3 ${className}`}>
-//   {youtube && (
-//     <a
-//       href={youtube}
-//       target="_blank"
-//       rel="noreferrer"
-//       aria-label="YouTube"
-//       title="YouTube"
-//       class={linkClass}
-//     >
-//       <YouTubeIcon />
-//     </a>
-//   )}
-//   {niconico && (
-//     <a
-//       href={niconico}
-//       target="_blank"
-//       rel="noreferrer"
-//       aria-label="niconico"
-//       title="niconico"
-//       class={linkClass}
-//     >
-//       <NiconicoIcon />
-//     </a>
-//   )}
-//   {piapro && (
-//     <a
-//       href={piapro}
-//       target="_blank"
-//       rel="noreferrer"
-//       aria-label="piapro"
-//       title="piapro(inst)"
-//       class={linkClass}
-//     >
-//       <PiaproIcon />
-//     </a>
-//   )}
-// </div>
+// 表示するリンクの定義。URL が空のものは出さない
+const links = [
+  { href: youtube, name: "YouTube", note: "MVを見る" },
+  { href: niconico, name: "ニコニコ", note: "MVを見る" },
+  { href: piapro, name: "piapro", note: "インスト・素材" },
+].filter((link) => link.href);
 ---
 
-<div class={`flex justify-between items-center gap-3 p-4 ${className}`}>
-  <label class="text-sm text-(--ink-soft)">各種リンク</label>
-  <div class="flex justify-between items-center gap-3">
-    {youtube && (
-      <a
-        href={youtube}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="YouTube"
-        title="YouTube"
-        class={linkClass}
-      >
-        <span class="text-sm text-(--ink-soft) hover:underline">YouTube</span>
-      </a>
-    )}
-    {niconico && (
-      <a
-        href={niconico}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="niconico"
-        title="niconico"
-        class={linkClass}
-      >
-        <span class="text-sm text-(--ink-soft) hover:underline">ニコニコ</span>
-      </a>
-    )}
-    {piapro && (
-      <a
-        href={piapro}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="piapro"
-        title="piapro(inst)"
-        class={linkClass}
-      >
-        <span class="text-sm text-(--ink-soft) hover:underline">piapro</span>
-      </a>
-    )}
-  </div>
-</div>
+{
+  links.length > 0 && (
+    <div class:list={["flex flex-col gap-3 p-4", className]}>
+      <p class="m-0 text-xs tracking-[0.08em] text-(--ink-soft)">各種リンク</p>
+      <ul class="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(7.5rem,1fr))] gap-2 p-0">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              class="group flex h-full flex-col items-center justify-center gap-0.5 rounded-md px-3 py-2.5 text-center no-underline ring-1 ring-(--rule) transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--ink) motion-reduce:transition-none"
+            >
+              <span class="text-sm font-medium text-(--ink) transition-colors group-hover:text-neutral-900 motion-reduce:transition-none">
+                {link.name}
+              </span>
+              <span class="text-xs text-(--ink-soft) transition-colors group-hover:text-neutral-600 motion-reduce:transition-none">
+                {link.note}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
