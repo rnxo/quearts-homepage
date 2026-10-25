@@ -20,7 +20,7 @@ import SquareSongCard from '#/components/discography/SquareSongCard.astro'
       <hr class="rule-line mt-8" />
     </Reveal>
     <Reveal client:visible className="mt-12">
-      <div class="grid grid-cols-2 gap-7">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
         {DiscoSongs.map((song) => (
           <SquareSongCard song={song} />
         ))}
