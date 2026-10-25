@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "#/layouts/BaseLayout.astro";
-import Reveal from "#/components/Reveal";
+import Reveal from "#/components/Reveal.astro";
 import Accordion from "#/components/contact/Accordion.astro";
 import StatusSection from "#/components/contact/StatusSection.astro";
 import ServicesSection from "#/components/contact/ServicesSection.astro";
@@ -14,7 +14,7 @@ import PriceTableSection from "#/components/contact/PriceTableSection.astro";
   description="楽曲制作（作曲・編曲・作詞・調声）のご依頼について。受付状況・料金表・依頼フォームをご案内しています。"
 >
   <main class="page-wrap px-4 py-16 sm:px-6 sm:py-20">
-    <Reveal client:visible>
+    <Reveal>
       <p class="kicker mb-4">Contact</p>
       <div
         class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
@@ -29,7 +29,7 @@ import PriceTableSection from "#/components/contact/PriceTableSection.astro";
       <hr class="rule-line mt-8" />
     </Reveal>
 
-    <Reveal client:visible className="mt-12">
+    <Reveal class="mt-12">
       <StatusSection />
       <Accordion>
         <ServicesSection />

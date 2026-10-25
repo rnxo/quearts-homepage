@@ -1,18 +1,18 @@
 ---
-import BaseLayout from '#/layouts/BaseLayout.astro'
-import Reveal from '#/components/Reveal'
-import NewsList from '#/components/news/NewsList.astro'
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import Reveal from "#/components/Reveal.astro";
+import NewsList from "#/components/news/NewsList.astro";
 ---
 
 <BaseLayout title="News — Quearts">
   <main class="page-wrap px-4 py-16 sm:px-6 sm:py-20">
-    <Reveal client:visible>
+    <Reveal>
       <h1 class="display text-3xl sm:text-5xl text-center">News</h1>
       <hr class="rule-line mt-8" />
     </Reveal>
 
     <div class="mt-4">
-      <Reveal client:visible>
+      <Reveal>
         <NewsList />
       </Reveal>
     </div>

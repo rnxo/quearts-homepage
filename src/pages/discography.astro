@@ -1,40 +1,20 @@
 ---
-import BaseLayout from '#/layouts/BaseLayout.astro'
-import Reveal from '#/components/Reveal'
-import { DiscoSongs } from '#/models/songs'
-import SquareSongCard from '#/components/discography/SquareSongCard.astro'
-
-// 案C — 主役をつくる非対称グリッド
-// 先頭の曲を主役として大きく、次の2曲を右に縦積み、残りを下段に並べる
-// const [featured, ...rest] = DiscoSongs
-// const sideSongs = rest.slice(0, 2)
-// const bottomSongs = rest.slice(2)
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import Reveal from "#/components/Reveal.astro";
+import { DiscoSongs } from "#/models/songs";
+import SquareSongCard from "#/components/discography/SquareSongCard.astro";
 ---
 
 <BaseLayout title="Discography — Quearts">
   <main class="page-wrap px-4 py-16 sm:px-6 sm:py-20">
-    <Reveal client:visible>
-      <h1 class="display text-center text-3xl sm:text-5xl">
-        Discography
-      </h1>
+    <Reveal>
+      <h1 class="display text-center text-3xl sm:text-5xl">Discography</h1>
       <hr class="rule-line mt-8" />
     </Reveal>
-    <Reveal client:visible className="mt-12">
+    <Reveal class="mt-12">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
-        {DiscoSongs.map((song) => (
-          <SquareSongCard song={song} />
-        ))}
+        {DiscoSongs.map((song) => <SquareSongCard song={song} />)}
       </div>
     </Reveal>
   </main>
 </BaseLayout>
-
-<!-- <HorizontalScrollContainer
-        client:load
-        label="Releases"
-        className="-mx-4 sm:-mx-6"
-      >
-        {DiscoSongs.map((song) => (
-          <SquareSongCard song={song} class="hscroll-track-item" />
-        ))}
-      </HorizontalScrollContainer> -->

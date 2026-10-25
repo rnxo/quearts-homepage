@@ -1,0 +1,39 @@
+---
+import { cn } from "#/lib/utils";
+
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div class={cn("reveal", className)}>
+  <slot />
+</div>
+<script>
+  let observer: IntersectionObserver | undefined;
+
+  function setupReveal() {
+    observer?.disconnect();
+
+    observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        for (const entry of entries) {
+          // 画面に入っていない要素は何もしない
+          if (!entry.isIntersecting) continue;
+
+          // ふわっと出す（CSS の .reveal.is-visible が効く）
+          entry.target.classList.add("is-visible");
+
+          // 一度出たら終わりなので、この要素だけ監視をやめる
+          currentObserver.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 },
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer?.observe(el));
+  }
+
+  document.addEventListener("astro:page-load", setupReveal);
+</script>

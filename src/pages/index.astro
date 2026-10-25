@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "#/layouts/BaseLayout.astro";
-import Reveal from "#/components/Reveal";
+import Reveal from "#/components/Reveal.astro";
 import SectionHeading from "#/components/SectionHeading.astro";
 import SongCard from "#/components/SongCard.astro";
 import { songs } from "#/models/songs";
@@ -15,7 +15,10 @@ import { sortedNews } from "#/models/news";
       alt="quearts-backimage"
       class="h-full w-full object-cover"
     />
-    <div class="absolute inset-0 bg-linear-to-b from-transparent from-40% to-(--paper)"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-b from-transparent from-40% to-(--paper)"
+    >
+    </div>
   </div>
 
   <main class="page-wrap px-4 pb-24 sm:px-6">
@@ -37,46 +40,47 @@ import { sortedNews } from "#/models/news";
         </div>
         <!-- <div class="border w-px h-[80%]"></div> -->
         <div class="flex justify-center items-center">
-          <p class="mt-6 max-w-[36em] text-center text-sm leading-[2.1] text-(--ink-soft)">
+          <p
+            class="mt-6 max-w-[36em] text-center text-sm leading-[2.1] text-(--ink-soft)"
+          >
             活動内容をこちらに記載する（もしくはこの欄ごとなしにする）
           </p>
         </div>
       </div>
-
     </section>
     {/* ニュースリスト */}
     <div class="my-20">
-      <Reveal client:visible>
+      <Reveal>
         <SectionHeading kicker="News" title="Recent Updates">
           <a slot="action" href="/news" class="nav-link text-sm">
             一覧を見る →
           </a>
         </SectionHeading>
       </Reveal>
-      <Reveal client:visible>
+      <Reveal>
         <ul class="m-0 list-none p-0">
-          {sortedNews.map((newsItem) => (
-            <li class="flex flex-col gap-1 border-b border-[var(--rule)] py-5 sm:flex-row sm:items-baseline sm:gap-6">
-              <span class="kicker shrink-0">{newsItem.releasedAt}</span>
-              <span class="text-sm">{newsItem.title}</span>
-            </li>
-          ))}
+          {
+            sortedNews.map((newsItem) => (
+              <li class="flex flex-col gap-1 border-b border-[var(--rule)] py-5 sm:flex-row sm:items-baseline sm:gap-6">
+                <span class="kicker shrink-0">{newsItem.releasedAt}</span>
+                <span class="text-sm">{newsItem.title}</span>
+              </li>
+            ))
+          }
         </ul>
       </Reveal>
     </div>
-    <Reveal client:visible>
+    <Reveal>
       <SectionHeading kicker="Discography" title="Latest Releases">
         <a slot="action" href="/discography" class="nav-link text-sm">
           一覧を見る →
         </a>
       </SectionHeading>
     </Reveal>
-    <Reveal client:visible>
+    <Reveal>
       {/* ソングカード */}
       <div class="mt-8 flex flex-col gap-8">
-        {songs.map((song) => (
-          <SongCard song={song} />
-        ))}
+        {songs.map((song) => <SongCard song={song} />)}
       </div>
     </Reveal>
   </main>
