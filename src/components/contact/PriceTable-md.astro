@@ -1,0 +1,40 @@
+---
+import type { PriceRow } from "#/models/contact/price.model";
+
+type Props = {
+  prices: PriceRow[];
+};
+
+const { prices } = Astro.props;
+---
+
+<table class="hidden w-full border-collapse text-sm lg:table">
+  <thead>
+    <tr class="border-b border-(--rule)">
+      <th scope="col" class="kicker pb-3 pr-4 text-left font-semibold">
+        Service
+      </th>
+      <th scope="col" class="kicker pb-3 text-left font-semibold">
+        Description
+      </th>
+      <th scope="col" class="kicker pb-3 text-left font-semibold"> Amount </th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      prices.map((row) => (
+        <tr class="border-b border-(--rule)/60 last:border-b-0">
+          <th scope="row" class="py-4 pr-4 text-left font-bold">
+            {row.label}
+          </th>
+          <td class="py-4 text-left text-sm text-(--ink-soft) whitespace-nowrap tabular-nums">
+            {row.description}
+          </td>
+          <td class="py-4 text-left text-base font-bold whitespace-nowrap tabular-nums">
+            ￥{row.amount}〜
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

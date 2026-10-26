@@ -1,0 +1,27 @@
+---
+import type { PriceRow } from "#/models/contact/price.model";
+
+type Props = {
+  prices: PriceRow[];
+};
+
+const { prices } = Astro.props;
+---
+
+<ul class="m-0 list-none p-0 text-sm lg:hidden">
+  {
+    prices.map((row) => (
+      <li class="border-b border-(--rule)/60 py-4 first:pt-0 last:border-b-0">
+        <div class="flex items-baseline justify-start md:justify-between gap-4">
+          <span class="font-bold">{row.label}</span>
+          <span class="text-base font-bold whitespace-nowrap tabular-nums">
+            ￥{row.amount}〜
+          </span>
+        </div>
+        <p class="mt-1 mb-0 text-sm leading-6 text-(--ink-soft)">
+          {row.description}
+        </p>
+      </li>
+    ))
+  }
+</ul>
