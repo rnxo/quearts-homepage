@@ -1,0 +1,53 @@
+---
+import BaseLayout from "#/layouts/BaseLayout.astro";
+import Reveal from "#/components/Reveal.astro";
+import SongLinks from "#/components/SongLinks.astro";
+import { formatDate } from "#/lib/format";
+import { sortedNews } from "#/models/news";
+import type { News } from "#/models/news";
+
+// ビルド時に、記事1件ごとに /news/{slug} のページを作る
+export function getStaticPaths() {
+  return sortedNews.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+type Props = { item: News };
+
+const { item } = Astro.props;
+---
+
+<BaseLayout title={`${item.title} — News — Quearts`}>
+  <main class="page-wrap px-4 py-16 sm:px-6 sm:py-20">
+    <Reveal>
+      <article class="mx-auto max-w-[880px]">
+        <p class="m-0 flex items-baseline gap-3 text-[13px] tracking-[0.06em] text-(--ink-soft) tabular-nums">
+          <time datetime={item.releasedAt}>{formatDate(item.releasedAt)}</time>
+          <span class="text-[11px] tracking-[0.16em] uppercase">
+            {item.category}
+          </span>
+        </p>
+        <h1 class="display mt-3 text-2xl leading-relaxed text-pretty sm:text-4xl">
+          {item.title}
+        </h1>
+        <hr class="rule-line mt-8" />
+
+        <SongLinks
+          class="mt-8"
+          youtube={item.links?.youtube}
+          niconico={item.links?.niconico}
+          piapro={item.links?.piapro}
+        />
+
+        <a
+          href="/news"
+          class="mt-12 inline-block text-sm text-(--ink-soft) no-underline hover:text-(--ink) hover:underline"
+        >
+          ← News 一覧へ
+        </a>
+      </article>
+    </Reveal>
+  </main>
+</BaseLayout>

@@ -10,20 +10,11 @@ const isNew = (iso: string) =>
 
 <ul class="m-0 mx-auto max-w-[880px] list-none border-b border-(--rule) p-0">
   {sortedNews.map((item) => {
-    // リンクがある記事だけ、行全体を押せるようにする
-    const href = item.links?.youtube
-    const Row = href ? 'a' : 'div'
     return (
       <li class="border-b border-(--rule)">
-        <Row
-          href={href}
-          target={href ? '_blank' : undefined}
-          rel={href ? 'noreferrer' : undefined}
-          class:list={[
-            'group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-6 px-2 py-6.5 text-(--ink) no-underline',
-            href &&
-              'transition-colors hover:bg-(--paper-sub) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--ink) motion-reduce:transition-none',
-          ]}
+        <a
+          href={`/news/${item.slug}`}
+          class="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-6 px-2 py-6.5 text-(--ink) no-underline transition-colors hover:bg-(--paper-sub) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--ink) motion-reduce:transition-none"
         >
           <span class="min-w-0">
             {/* 1段目: NEW、日付、カテゴリ */}
@@ -45,15 +36,13 @@ const isNew = (iso: string) =>
               {item.title}
             </span>
           </span>
-          {href && (
-            <span
-              aria-hidden="true"
-              class="text-base text-(--ink-soft) transition-transform group-hover:translate-x-1 group-hover:text-(--ink) motion-reduce:transition-none"
-            >
-              →
-            </span>
-          )}
-        </Row>
+          <span
+            aria-hidden="true"
+            class="text-base text-(--ink-soft) transition-transform group-hover:translate-x-1 group-hover:text-(--ink) motion-reduce:transition-none"
+          >
+            →
+          </span>
+        </a>
       </li>
     )
   })}
